@@ -1,0 +1,10 @@
+case bz_eBZDBChange:
+{
+    bz_BZDBChangeData_V1* bzdbData = (bz_BZDBChangeData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (bz_ApiString)  key - The variable that was changed
+    //     (bz_ApiString)  value - What the variable was changed too
+}
+break;

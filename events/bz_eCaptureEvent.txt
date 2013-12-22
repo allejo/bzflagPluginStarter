@@ -1,0 +1,14 @@
+case bz_eCaptureEvent: // This event is called each time a team's flag has been captured.
+{
+    bz_CTFCaptureEventData_V1* captureData = (bz_CTFCaptureEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (bz_eTeamType)  teamCapped    - The team whose flag was captured.
+    //     (bz_eTeamType)  teamCapping   - The team who did the capturing.
+    //     (int)           playerCapping - The player who captured the flag.
+    //     (float[3])      pos           - The world position(X,Y,Z) where the flag has been captured
+    //     (float)         rot           - The rotational orientation of the capturing player
+    //     (double)        time          - This value is the local server time of the event.
+}
+break;
