@@ -1,0 +1,13 @@
+case bz_eAllowSpawn: // This event is called before a player respawns.
+{
+    bz_AllowSpawnData_V1* allowSpawnData = (bz_AllowSpawnData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)           playerID  - This value is the player ID for the joining player.
+    //     (bz_eTeamType)  team      - The team the player belongs to.
+    //     (bool)          handled   - Whether or not the plugin will be handling the respawn or not.
+    //     (bool)          allow     - Set to false if the player should not be allowed to spawn.
+    //     (double)        eventTime - The server time the event occurred (in seconds.)
+}
+break;
