@@ -168,11 +168,48 @@ if (isset($_POST['generate']))
     return;
 }
 
+$licenses = array();
+$events = array();
+
+// Let's read all the license templates that we have
+if ($handle = opendir('licenses'))
+{
+    while (false !== ($entry = readdir($handle)))
+    {
+        if ($entry != "." && $entry != "..")
+        {
+            $licenses[] = substr($entry, 0, strrpos($entry, "."));
+        }
+    }
+
+    closedir($handle);
+}
+
+// Let's read all of the events that we have available
+if ($handle = opendir('events'))
+{
+    while (false !== ($entry = readdir($handle)))
+    {
+        if ($entry != "." && $entry != "..")
+        {
+            $events[] = substr($entry, 0, strrpos($entry, "."));
+        }
+    }
+
+    closedir($handle);
+}
+
+sort($licenses);
+sort($events);
+
 ?>
+<!DOCTYPE html>
 <html>
     <head>
-
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <title>allejo's BZFlag Plugin Starter</title>
     </head>
+
     <body>
         <header>
             <a href="https://github.com/allejo/bzflagPluginStarter">
@@ -191,38 +228,23 @@ if (isset($_POST['generate']))
                 <span>License</span>
                 <select name="license">
                     <?php
-                        if ($handle = opendir('licenses'))
+                        foreach ($licenses as $license)
                         {
-                            while (false !== ($entry = readdir($handle)))
-                            {
-                                if ($entry != "." && $entry != "..")
-                                {
-                                    $license = substr($entry, 0, strrpos($entry, "."));
-                                    echo '<option value="' . $license . '">' . $license . '</option>';
-                                }
-                            }
-
-                            closedir($handle);
+                            echo '<option value="' . $license . '">' . $license . '</option>';
                         }
                     ?>
                 </select>
                 <h2>Plug-in Events</h2>
-                <?php
-                    if ($handle = opendir('events'))
-                    {
-                        while (false !== ($entry = readdir($handle)))
+                <div>
+                    <?php
+                        foreach ($events as $event)
                         {
-                            if ($entry != "." && $entry != "..")
-                            {
-                                $event = substr($entry, 0, strrpos($entry, "."));
-                                echo '<input type="checkbox" name="Events[]" value="' . $event . '" /> ' . $event;
-                            }
+                            echo '<p><input type="checkbox" name="Events[]" value="' . $event . '" /> ' . $event . '</p>';
                         }
-
-                        closedir($handle);
-                    }
-                ?>
+                    ?>
+                </div>
                 <h2>Plug-in Slashcommands</h2>
+                <p>Insert one slash command per line without the '/'.</p>
                 <textarea name="slashcommands"></textarea>
                 <input type="hidden" name="generate" value="true" />
                 <input type="submit" value="Generate" />
