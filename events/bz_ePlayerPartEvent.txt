@@ -1,0 +1,12 @@
+case bz_ePlayerPartEvent: // This event is called each time a player leaves a game
+{
+    bz_PlayerJoinPartEventData_V1* partData = (bz_PlayerJoinPartEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)                   playerID  - The player ID that is leaving
+    //     (bz_BasePlayerRecord*)  record    - The player record for the leaving player
+    //     (bz_ApiString)          reason    - The reason for leaving, such as a kick or a ban
+    //     (double)                eventTime - Time of event.
+}
+break;

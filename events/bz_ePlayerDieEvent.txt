@@ -1,0 +1,16 @@
+case bz_ePlayerDieEvent: // This event is called each time a tank is killed.
+{
+    bz_PlayerDieEventData_V1* dieData = (bz_PlayerDieEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //    (int)                   playerID       - ID of the player who was killed.
+    //    (bz_eTeamType)          team           - The team the killed player was on.
+    //    (int)                   killerID       - The owner of the shot that killed the player, or BZ_SERVER for server side kills
+    //    (bz_eTeamType)          killerTeam     - The team the owner of the shot was on.
+    //    (bz_ApiString)          flagKilledWith - The flag name the owner of the shot had when the shot was fired.
+    //    (int)                   shotID         - The shot ID that killed the player, if the player was not killed by a shot, the id will be -1.
+    //    (bz_PlayerUpdateState)  state          - The state record for the killed player at the time of the event
+    //    (double)                time           - Time of the event on the server.
+}
+break;

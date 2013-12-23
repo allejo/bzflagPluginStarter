@@ -1,0 +1,11 @@
+case bz_ePlayerJoinEvent: // This event is called each time a player joins the game
+{
+    bz_PlayerJoinPartEventData_V1* joinData = (bz_PlayerJoinPartEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)                   playerID  - The player ID that is joining
+    //     (bz_BasePlayerRecord*)  record    - The player record for the joining player
+    //     (double)                eventTime - Time of event.
+}
+break;
