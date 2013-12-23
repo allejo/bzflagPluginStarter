@@ -1,0 +1,4 @@
+void %s::Init (const char* commandLine)
+{
+    bz_debugMessage(4, "%s plugin loaded.");%s%s
+}

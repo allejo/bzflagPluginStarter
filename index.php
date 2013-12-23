@@ -17,8 +17,13 @@ BZFlag Plugin Starter
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 if (isset($_POST['generate']))
 {
+    header("Content-Type: text/plain");
+
     // Get the plugin name, remove all the white space, and use CamelCase so we
     // can use this as the class name when we generate the plugin
     $className = preg_replace('/\s+/', '', ucwords($_POST['plugin-name']));
@@ -27,7 +32,67 @@ if (isset($_POST['generate']))
     // top of our generated plugin
     $currentYear = date("Y");
 
+    // We will be storing our generated plugin code in this variable and finally
+    // output this after we're done
+    $generatedPlugin = "/*\n";
 
+    // Let's temporarily store our license templates so we can format it in a bit
+    $licenseTemplate = file_get_contents('licenses/' . $_POST['license'] . '.txt');
+
+    // The GPL licenses require a different amount of arguments in the lincense
+    // header so we need to accomodate that
+    if ($_POST['license'] == "GPLv2" || $_POST['license'] == "GPLv3" ||
+        $_POST['license'] == "LGPLv2")
+    {
+        $generatedPlugin .= sprintf($licenseTemplate, $_POST['plugin-name'], $currentYear, $_POST['author']);
+    }
+    else
+    {
+        $generatedPlugin .= sprintf($licenseTemplate, $currentYear, $_POST['author']);
+    }
+
+    // Clean up our license information by ending the comment
+    $generatedPlugin .= "\n*/\n\n";
+
+    // Get the class header with all the declarations we're gonna use
+    $classHeader = file_get_contents('sections/class.txt');
+
+    // Declare some default values regardless if we handle slash commands or not
+    $classInheritance = "public bz_Plugin";
+    $slashCommandDeclaraction = "";
+
+    // Check if we need to handle slash commands or not so we can inherit the
+    // proper class and declare the slashcommand event
+    if (strlen($_POST['slashcommands']) > 1)
+    {
+        $classInheritance .= ", public bz_CustomSlashCommandHandler";
+        $slashCommandDeclaraction = "\n\n    virtual bool SlashCommand (int playerID, bz_ApiString, bz_ApiString, bz_APIStringList*);";
+    }
+
+    // Add the class header to the generated code so far
+    $generatedPlugin .= sprintf($classHeader, $className, $classInheritance, $_POST['plugin-name'], $slashCommandDeclaraction, $className) . "\n\n";
+
+    // Get the init() template
+    $initInitialization = file_get_contents('sections/init.txt');
+
+    // Check if we have to handle events in order to register them
+    if (count($_POST['Events']) > 0)
+    {
+        $registeredEvents = "\n\n// Register our events with Register()\n";
+
+        foreach ($_POST['Events'] as $event)
+        {
+            $registeredEvents .= "Register(" . $event . ");\n";
+        }
+    }
+
+    // Check if we have to handle slash commands to register them
+    if (strlen($_POST['slashcommands']) > 1)
+    {
+
+    }
+
+    echo $generatedPlugin;
     return;
 }
 

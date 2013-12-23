@@ -1,0 +1,13 @@
+#include "bzfsAPI.h"
+#include "plugin_utils.h"
+
+class %s : %s
+{
+public:
+    virtual const char* Name () {return "%s";}
+    virtual void Init (const char* config);
+    virtual void Event (bz_EventData *eventData);
+    virtual void Cleanup (void);%s
+};
+
+BZ_PLUGIN(%s)
