@@ -110,11 +110,12 @@ if (isset($_POST['generate']))
 
     // Let's handle the Cleanup() function now
     $cleanupInitialization = file_get_contents('sections/cleanup.txt');
-    $cleanupSlashCommands = "\n\n    // Clean up our custom slash commands";
 
     // Check if there are any slash commands that we need to handle
     if (count($slashCommands) > 0)
     {
+        $cleanupSlashCommands = "\n\n    // Clean up our custom slash commands";
+
         foreach ($slashCommands as $command)
         {
             $cleanupSlashCommands .= "\n    bz_removeCustomSlashCommand('" . $command . "');";
