@@ -1,0 +1,15 @@
+case bz_eRawChatMessageEvent: // This event is called for each chat message the server receives. It is called before any filtering is done.
+{
+    bz_ChatEventData_V1* chatData = (bz_ChatEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)           from      - The player ID sending the message.
+    //     (int)           to        - The player ID that the message is to if the message is to an individual, or a
+    //                                 broadcast. If the message is a broadcast the id will be BZ_ALLUSERS.
+    //     (bz_eTeamType)  team      - The team the message is for if it not for an individual or a broadcast. If it
+    //                                 is not a team message the team will be eNoTeam.
+    //     (bz_ApiString)  message   - The filtered final text of the message.
+    //     (double)        eventTime - The time of the event.
+}
+break;

@@ -1,0 +1,11 @@
+case bz_eShotEndedEvent: // This event is called each time a shot ends
+{
+    bz_eShotEndedEvent_V1* shotEndData = (bz_eShotEndedEvent_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)  playerID - The player ending the shot
+    //     (int)  shotID   - The shot ID
+    //     (bool) explode  - Whether the shot exploded or not
+}
+break;
