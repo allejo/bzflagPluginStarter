@@ -24,9 +24,15 @@ if (isset($_POST['generate']))
 {
     header("Content-Type: text/plain");
 
+    $pluginName = $_POST['plugin-name'];
+    $author = $_POST['author'];
+    $license = $_POST['license'];
+    $slashCommands = preg_split("/[\r\n]+/", $_POST['slashcommands'], -1, PREG_SPLIT_NO_EMPTY);
+    $events = $_POST['Events'];
+
     // Get the plugin name, remove all the white space, and use CamelCase so we
     // can use this as the class name when we generate the plugin
-    $className = preg_replace('/\s+/', '', ucwords($_POST['plugin-name']));
+    $className = preg_replace('/\s+/', '', ucwords($pluginName));
 
     // We need to get the current date to generate the copyright notices at the
     // top of our generated plugin
@@ -37,18 +43,18 @@ if (isset($_POST['generate']))
     $generatedPlugin = "/*\n";
 
     // Let's temporarily store our license templates so we can format it in a bit
-    $licenseTemplate = file_get_contents('licenses/' . $_POST['license'] . '.txt');
+    $licenseTemplate = file_get_contents('licenses/' . $license . '.txt');
 
     // The GPL licenses require a different amount of arguments in the lincense
     // header so we need to accomodate that
     if ($_POST['license'] == "GPLv2" || $_POST['license'] == "GPLv3" ||
         $_POST['license'] == "LGPLv2")
     {
-        $generatedPlugin .= sprintf($licenseTemplate, $_POST['plugin-name'], $currentYear, $_POST['author']);
+        $generatedPlugin .= sprintf($licenseTemplate, $pluginName, $currentYear, $author);
     }
     else
     {
-        $generatedPlugin .= sprintf($licenseTemplate, $currentYear, $_POST['author']);
+        $generatedPlugin .= sprintf($licenseTemplate, $currentYear, $author);
     }
 
     // Clean up our license information by ending the comment
@@ -63,34 +69,72 @@ if (isset($_POST['generate']))
 
     // Check if we need to handle slash commands or not so we can inherit the
     // proper class and declare the slashcommand event
-    if (strlen($_POST['slashcommands']) > 1)
+    if (count($slashCommands) > 0)
     {
         $classInheritance .= ", public bz_CustomSlashCommandHandler";
         $slashCommandDeclaraction = "\n\n    virtual bool SlashCommand (int playerID, bz_ApiString, bz_ApiString, bz_APIStringList*);";
     }
 
     // Add the class header to the generated code so far
-    $generatedPlugin .= sprintf($classHeader, $className, $classInheritance, $_POST['plugin-name'], $slashCommandDeclaraction, $className) . "\n\n";
+    $generatedPlugin .= sprintf($classHeader, $className, $classInheritance, $pluginName, $slashCommandDeclaraction, $className) . "\n\n";
 
     // Get the init() template
     $initInitialization = file_get_contents('sections/init.txt');
+    $registeredEvents = "";
+    $registeredSlashCommands = "";
 
     // Check if we have to handle events in order to register them
-    if (count($_POST['Events']) > 0)
+    if (count($events) > 0)
     {
-        $registeredEvents = "\n\n// Register our events with Register()\n";
+        $registeredEvents = "\n\n    // Register our events with Register()";
 
         foreach ($_POST['Events'] as $event)
         {
-            $registeredEvents .= "Register(" . $event . ");\n";
+            $registeredEvents .= "\n    Register(" . $event . ");";
         }
     }
 
     // Check if we have to handle slash commands to register them
-    if (strlen($_POST['slashcommands']) > 1)
+    if (count($slashCommands) > 0)
     {
+        $registeredSlashCommands = "\n\n    // Register our custom slash commands";
 
+        foreach ($slashCommands as $command)
+        {
+            $registeredSlashCommands .= "\n    bz_registerCustomSlashCommand('" . $command . "', this);";
+        }
     }
+
+    // Add our init() code to the generated code thus far
+    $generatedPlugin .= sprintf($initInitialization, $className, $className, $registeredEvents, $registeredSlashCommands) . "\n\n";
+
+    // Let's handle the Cleanup() function now
+    $cleanupInitialization = file_get_contents('sections/cleanup.txt');
+    $cleanupSlashCommands = "";
+
+    if (count($slashCommands) > 0)
+    {
+        $cleanupSlashCommands = "\n\n    // Clean up our custom slash commands";
+
+        foreach ($slashCommands as $command)
+        {
+            $cleanupSlashCommands .= "\n    bz_removeCustomSlashCommand('" . $command . "');";
+        }
+    }
+
+    // Add our cleanup() to the generated code
+    $generatedPlugin .= sprintf($cleanupInitialization, $className, $className, $cleanupSlashCommands) . "\n\n";
+
+    // Store our events template here for now
+    $switchEvent = file_get_contents('sections/event.txt');
+    $switchEventCode = "";
+
+    foreach ($events as $event)
+    {
+        $switchEventCode .= file_get_contents('events/' . $event . '.txt') . "\n\n";
+    }
+
+    $generatedPlugin .= sprintf($switchEvent, $className, $switchEventCode);
 
     echo $generatedPlugin;
     return;

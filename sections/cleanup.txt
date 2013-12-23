@@ -1,0 +1,6 @@
+void %s::Cleanup (void)
+{
+    bz_debugMessage(4, "%s plugin unloaded");
+
+    Flush(); // Clean up all the events%s
+}

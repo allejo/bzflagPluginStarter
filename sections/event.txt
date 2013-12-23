@@ -1,0 +1,9 @@
+void %s::Event(bz_EventData *eventData)
+{
+    switch (eventData->eventType)
+    {
+%s
+        default:
+        break;
+    }
+}
