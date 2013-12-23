@@ -103,38 +103,64 @@ if (isset($_POST['generate']))
         {
             $registeredSlashCommands .= "\n    bz_registerCustomSlashCommand('" . $command . "', this);";
         }
+
+        // Add our init() code to the generated code thus far
+        $generatedPlugin .= sprintf($initInitialization, $className, $className, $registeredEvents, $registeredSlashCommands) . "\n\n";
     }
 
-    // Add our init() code to the generated code thus far
-    $generatedPlugin .= sprintf($initInitialization, $className, $className, $registeredEvents, $registeredSlashCommands) . "\n\n";
-
-    // Let's handle the Cleanup() function now
-    $cleanupInitialization = file_get_contents('sections/cleanup.txt');
-    $cleanupSlashCommands = "";
-
+    // Check if there are any slash commands that we need to handle
     if (count($slashCommands) > 0)
     {
+        // Let's handle the Cleanup() function now
+        $cleanupInitialization = file_get_contents('sections/cleanup.txt');
         $cleanupSlashCommands = "\n\n    // Clean up our custom slash commands";
 
         foreach ($slashCommands as $command)
         {
             $cleanupSlashCommands .= "\n    bz_removeCustomSlashCommand('" . $command . "');";
         }
-    }
 
-    // Add our cleanup() to the generated code
-    $generatedPlugin .= sprintf($cleanupInitialization, $className, $className, $cleanupSlashCommands) . "\n\n";
+        // Add our cleanup() to the generated code
+        $generatedPlugin .= sprintf($cleanupInitialization, $className, $className, $cleanupSlashCommands) . "\n\n";
+    }
 
     // Store our events template here for now
     $switchEvent = file_get_contents('sections/event.txt');
     $switchEventCode = "";
 
+    // Get the data comments for each of the events and add them to the switch statement
     foreach ($events as $event)
     {
         $switchEventCode .= file_get_contents('events/' . $event . '.txt') . "\n\n";
     }
 
-    $generatedPlugin .= sprintf($switchEvent, $className, $switchEventCode);
+    // Add our switch statement to the generated code
+    $generatedPlugin .= sprintf($switchEvent, $className, $switchEventCode) . "\n\n";
+
+    $slashCommandInitialization = file_get_contents('sections/slashcommand.txt');
+    $commandIfStatements = "";
+
+    if (count($slashCommands) > 0)
+    {
+        $firstStatement = true;
+
+        foreach ($slashCommands as $command)
+        {
+            if ($firstStatement)
+            {
+                $commandIfStatements .= '    if (command == "' . $command . '")';
+                $commandIfStatements .= "\n    {\n\n    }";
+                $firstStatement = false;
+            }
+            else
+            {
+                $commandIfStatements .= "\n    else if (command == \"" . $command . '")';
+                $commandIfStatements .= "\n    {\n\n    }";
+            }
+        }
+    }
+
+    $generatedPlugin .= sprintf($slashCommandInitialization, $className, $commandIfStatements);
 
     echo $generatedPlugin;
     return;
