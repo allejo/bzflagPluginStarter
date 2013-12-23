@@ -1,0 +1,13 @@
+case bz_eListServerUpdateEvent: // This event is called before the server adds itself to the list server
+{
+    bz_ListServerUpdateEvent_V1* listServerData = (bz_ListServerUpdateEvent_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (bz_ApiString)  address     - The public address of the server, as specified with the -publicaddr command-line option.
+    //     (bz_ApiString)  description - The public description of the server, as specified with the -publictitle command-line option.
+    //     (bz_ApiString)  groups      - The groups the server will be advertised to, as specified with the -advertise command-line option.
+    //     (bool)          handled     - Whether or not the plug-in will override the values
+    //     (double)        eventTime   - The server time the event occurred (in seconds.)
+}
+break;
