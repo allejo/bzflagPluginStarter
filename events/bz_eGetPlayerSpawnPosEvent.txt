@@ -1,0 +1,18 @@
+case bz_eGetPlayerSpawnPosEvent: // This event is called each time the server needs a new spawn postion.
+{
+    bz_GetPlayerSpawnPosEventData_V1* spawnData = (bz_GetPlayerSpawnPosEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)           playerID - ID of the player that is requesting the spawn position.
+    //     (bz_eTeamType)  team     - The team the player is currently in.
+    //     (bool)          handled  - The current state representing if other plug-ins have modified the spawn position.
+    //                                Plug-ins that modify the spawn position should set this value to true to inform other
+    //                                plug-ins that have not processed yet.
+    //     (float[3])      pos      - Position where the player will be spawned. This value is initialized to the server
+    //                                computed spawn position using the current spawn rules.
+    //     (float)         rot      - The rotational direction that the player will be spawned at. This value is initialized
+    //                                to the server computed spawn rotation using the current spawn rules.
+    //     (double)        time     - The local server time of the event.
+}
+break;

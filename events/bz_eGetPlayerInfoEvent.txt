@@ -1,0 +1,17 @@
+case bz_eGetPlayerInfoEvent: // This event is called each time the server sends out a player info update message to a remote player
+{
+    bz_GetPlayerInfoEventData_V1* playerInfoData = (bz_GetPlayerInfoEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)           playerID   - The playerID the record refers too.
+    //     (bz_ApiString)  callsign   - The callsign for the player.
+    //     (bz_ApiString)  ipAddress  - The IPv4 address for the player. (not set in 2.4.0, fixed in 2.4.1.)
+    //     (bz_eTeamType)  team       - The team the player is current only.
+    //     (bool)          admin      - The admin permision state of the player, indicating if they will be displayed with an '@' symbol in the scoreboard.
+    //     (bool)          verified   - The authentication state of the player, indicating if they will be displayed with an '+' symbol in the scoreboard.
+    //     (bool)          registered - The state of the player's username. This value is true if the username is registered.
+    //                                  If the user is not veriried, but registered then they will be displayed with an '-' symbol in the scoreboard.
+    //     (double)        eventTime  - The local server time of the event.
+}
+break;
