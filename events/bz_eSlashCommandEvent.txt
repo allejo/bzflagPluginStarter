@@ -1,11 +1,11 @@
-case bz_eSlashCommandEvent: // This event is called each time a player sends a slash command
-{
-    bz_SlashCommandEventData_V1* slashCommandData = (bz_SlashCommandEventData_V1*)eventData;
+        case bz_eSlashCommandEvent: // This event is called each time a player sends a slash command
+        {
+            bz_SlashCommandEventData_V1* slashCommandData = (bz_SlashCommandEventData_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (int)           from - The player who sent the slash command
-    //     (bz_ApiString)  message - The full text of the chat message for the slash command, containing the command and all associated parameters
-    //     (double)        time    - The local server time of the event
-}
-break;
+            //  Data
+            //  ---
+            //     (int)           from - The player who sent the slash command
+            //     (bz_ApiString)  message - The full text of the chat message for the slash command, containing the command and all associated parameters
+            //     (double)        time    - The local server time of the event
+        }
+        break;

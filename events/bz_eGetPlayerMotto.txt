@@ -1,11 +1,11 @@
-case bz_eGetPlayerMotto: // This event is called when the player joins. It gives us the motto of the player.
-{
-    bz_GetPlayerMottoData_V2* mottoData = (bz_GetPlayerMottoData_V2*)eventData;
+        case bz_eGetPlayerMotto: // This event is called when the player joins. It gives us the motto of the player.
+        {
+            bz_GetPlayerMottoData_V2* mottoData = (bz_GetPlayerMottoData_V2*)eventData;
 
-    //  Data
-    //  ---
-    //     (bz_ApiString)         motto     - The motto of the joining player. This value may ve overwritten to change the motto of a player.
-    //     (bz_BasePlayerRecord)  record    - The player record for the player using the motto.
-    //     (double)               eventTime - The server time the event occurred (in seconds).
-}
-break;
+            //  Data
+            //  ---
+            //     (bz_ApiString)         motto     - The motto of the joining player. This value may ve overwritten to change the motto of a player.
+            //     (bz_BasePlayerRecord)  record    - The player record for the player using the motto.
+            //     (double)               eventTime - The server time the event occurred (in seconds).
+        }
+        break;

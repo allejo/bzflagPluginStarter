@@ -1,12 +1,12 @@
-case bz_ePlayerSpawnEvent: // This event is called each time a playing tank is being spawned into the world
-{
-    bz_PlayerSpawnEventData_V1* spawnData = (bz_PlayerSpawnEventData_V1*)eventData;
+        case bz_ePlayerSpawnEvent: // This event is called each time a playing tank is being spawned into the world
+        {
+            bz_PlayerSpawnEventData_V1* spawnData = (bz_PlayerSpawnEventData_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (int)                   playerID  - ID of the player who was added to the world.
-    //     (bz_eTeamType)          team      - The team the player is a member of.
-    //     (bz_PlayerUpdateState)  state     - The state record for the spawning player
-    //     (double)                eventTime - Time local server time for the event.
-}
-break;
+            //  Data
+            //  ---
+            //     (int)                   playerID  - ID of the player who was added to the world.
+            //     (bz_eTeamType)          team      - The team the player is a member of.
+            //     (bz_PlayerUpdateState)  state     - The state record for the spawning player
+            //     (double)                eventTime - Time local server time for the event.
+        }
+        break;

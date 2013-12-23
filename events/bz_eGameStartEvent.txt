@@ -1,10 +1,10 @@
-case bz_eGameStartEvent: // This event is triggered when a timed game begins
-{
-    bz_GameStartEndEventData_V1* gameStartData = (bz_GameStartEndEventData_V1*)eventData;
+        case bz_eGameStartEvent: // This event is triggered when a timed game begins
+        {
+            bz_GameStartEndEventData_V1* gameStartData = (bz_GameStartEndEventData_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (double) duration  - The duration (in seconds) of the game.
-    //     (double) eventTime - The server time the event occurred (in seconds).
-}
-break;
+            //  Data
+            //  ---
+            //     (double) duration  - The duration (in seconds) of the game.
+            //     (double) eventTime - The server time the event occurred (in seconds).
+        }
+        break;

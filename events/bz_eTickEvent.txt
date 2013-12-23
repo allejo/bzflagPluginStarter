@@ -1,9 +1,9 @@
-case bz_eTickEvent: // This event is called once for each BZFS main loop
-{
-    bz_TickEventData_V1* tickData = (bz_TickEventData_V1*)eventData;
+        case bz_eTickEvent: // This event is called once for each BZFS main loop
+        {
+            bz_TickEventData_V1* tickData = (bz_TickEventData_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (double)  eventTime - Local Server time of the event (in seconds)
-}
-break;
+            //  Data
+            //  ---
+            //     (double)  eventTime - Local Server time of the event (in seconds)
+        }
+        break;

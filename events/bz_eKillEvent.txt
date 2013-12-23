@@ -1,11 +1,11 @@
-case bz_eKillEvent: // This event is triggered when a player sends the /kill Slash Command to kill another player.
-{
-    bz_KillEventData_V1* killData = (bz_KillEventData_V1*)eventData;
+        case bz_eKillEvent: // This event is triggered when a player sends the /kill Slash Command to kill another player.
+        {
+            bz_KillEventData_V1* killData = (bz_KillEventData_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (int)          killerID - The ID of the player who sent the /kill command
-    //     (int)          killedID - The ID of the player who was killed
-    //     (bz_ApiString) reason   - The reason (sent to killed player).
-}
-break;
+            //  Data
+            //  ---
+            //     (int)          killerID - The ID of the player who sent the /kill command
+            //     (int)          killedID - The ID of the player who was killed
+            //     (bz_ApiString) reason   - The reason (sent to killed player).
+        }
+        break;

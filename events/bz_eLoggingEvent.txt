@@ -1,11 +1,11 @@
-case bz_eLoggingEvent: // This event is called whenever a debug message is outputted
-{
-    bz_LoggingEventData_V1* logData = (bz_LoggingEventData_V1*)eventData;
+        case bz_eLoggingEvent: // This event is called whenever a debug message is outputted
+        {
+            bz_LoggingEventData_V1* logData = (bz_LoggingEventData_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (int)           level     - The debug level that this debug message is being triggered at. -d corresponds to level 1, -dd to level 2, etc.
-    //     (bz_ApiString)  message   - The debug message that is being outputted.
-    //     (double)        eventTime - The server time the event occurred (in seconds.)
-}
-break;
+            //  Data
+            //  ---
+            //     (int)           level     - The debug level that this debug message is being triggered at. -d corresponds to level 1, -dd to level 2, etc.
+            //     (bz_ApiString)  message   - The debug message that is being outputted.
+            //     (double)        eventTime - The server time the event occurred (in seconds.)
+        }
+        break;

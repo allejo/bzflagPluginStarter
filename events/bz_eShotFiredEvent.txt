@@ -1,12 +1,12 @@
-case bz_eShotFiredEvent: // This event is called each time a shot is fired
-{
-    bz_ShotFiredEventData_V1* shotFiredData = (bz_ShotFiredEventData_V1*)eventData;
+        case bz_eShotFiredEvent: // This event is called each time a shot is fired
+        {
+            bz_ShotFiredEventData_V1* shotFiredData = (bz_ShotFiredEventData_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (int)          playerID - ID of the player that fired the shot
-    //     (bool)         changed  - Whether or not the shot has been modified. Shot type will not change unless this is set to 1 (true).
-    //     (float[3])     pos      - Where the shot was fired
-    //     (bz_ApiString) type     - The shot type. This is the abbreviation, such as "PZ" or "SW"
-}
-break;
+            //  Data
+            //  ---
+            //     (int)          playerID - ID of the player that fired the shot
+            //     (bool)         changed  - Whether or not the shot has been modified. Shot type will not change unless this is set to 1 (true).
+            //     (float[3])     pos      - Where the shot was fired
+            //     (bz_ApiString) type     - The shot type. This is the abbreviation, such as "PZ" or "SW"
+        }
+        break;

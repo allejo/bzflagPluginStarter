@@ -1,9 +1,9 @@
-case bz_ePlayerAuthEvent: // This event is triggered when a player's authorization status changes.
-{
-    bz_PlayerAuthEvent_V1* authData = (bz_PlayerAuthEvent_V1*)eventData;
+        case bz_ePlayerAuthEvent: // This event is triggered when a player's authorization status changes.
+        {
+            bz_PlayerAuthEvent_V1* authData = (bz_PlayerAuthEvent_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (int)  playerID - The ID of the player who's authorization changed
-}
-break;
+            //  Data
+            //  ---
+            //     (int)  playerID - The ID of the player who's authorization changed
+        }
+        break;

@@ -1,11 +1,11 @@
-case bz_eFlagDroppedEvent: // This event is called each time a flag is dropped by a player.
-{
-    bz_FlagDroppedEventData_V1* flagDropData = (bz_FlagDroppedEventData_V1*)eventData;
+        case bz_eFlagDroppedEvent: // This event is called each time a flag is dropped by a player.
+        {
+            bz_FlagDroppedEventData_V1* flagDropData = (bz_FlagDroppedEventData_V1*)eventData;
 
-    //  Data
-    //  ---
-    //     (int)       playerID - The player that dropped the flag
-    //     (int)       flagID   - The flag ID that was dropped
-    //     (float[3])  pos      - The position at which the flag was dropped
-}
-break;
+            //  Data
+            //  ---
+            //     (int)       playerID - The player that dropped the flag
+            //     (int)       flagID   - The flag ID that was dropped
+            //     (float[3])  pos      - The position at which the flag was dropped
+        }
+        break;
