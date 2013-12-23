@@ -110,6 +110,7 @@ if (isset($_POST['generate']))
 
     // Let's handle the Cleanup() function now
     $cleanupInitialization = file_get_contents('sections/cleanup.txt');
+    $cleanupSlashCommands = "";
 
     // Check if there are any slash commands that we need to handle
     if (count($slashCommands) > 0)
