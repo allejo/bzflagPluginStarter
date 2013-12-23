@@ -103,26 +103,26 @@ if (isset($_POST['generate']))
         {
             $registeredSlashCommands .= "\n    bz_registerCustomSlashCommand('" . $command . "', this);";
         }
-
-        // Add our init() code to the generated code thus far
-        $generatedPlugin .= sprintf($initInitialization, $className, $className, $registeredEvents, $registeredSlashCommands) . "\n\n";
     }
+
+    // Add our init() code to the generated code thus far
+    $generatedPlugin .= sprintf($initInitialization, $className, $className, $registeredEvents, $registeredSlashCommands) . "\n\n";
+
+    // Let's handle the Cleanup() function now
+    $cleanupInitialization = file_get_contents('sections/cleanup.txt');
+    $cleanupSlashCommands = "\n\n    // Clean up our custom slash commands";
 
     // Check if there are any slash commands that we need to handle
     if (count($slashCommands) > 0)
     {
-        // Let's handle the Cleanup() function now
-        $cleanupInitialization = file_get_contents('sections/cleanup.txt');
-        $cleanupSlashCommands = "\n\n    // Clean up our custom slash commands";
-
         foreach ($slashCommands as $command)
         {
             $cleanupSlashCommands .= "\n    bz_removeCustomSlashCommand('" . $command . "');";
         }
-
-        // Add our cleanup() to the generated code
-        $generatedPlugin .= sprintf($cleanupInitialization, $className, $className, $cleanupSlashCommands) . "\n\n";
     }
+
+    // Add our cleanup() to the generated code
+    $generatedPlugin .= sprintf($cleanupInitialization, $className, $className, $cleanupSlashCommands) . "\n\n";
 
     // Store our events template here for now
     $switchEvent = file_get_contents('sections/event.txt');
@@ -137,11 +137,11 @@ if (isset($_POST['generate']))
     // Add our switch statement to the generated code
     $generatedPlugin .= sprintf($switchEvent, $className, $switchEventCode) . "\n\n";
 
-    $slashCommandInitialization = file_get_contents('sections/slashcommand.txt');
-    $commandIfStatements = "";
 
     if (count($slashCommands) > 0)
     {
+        $slashCommandInitialization = file_get_contents('sections/slashcommand.txt');
+        $commandIfStatements = "";
         $firstStatement = true;
 
         foreach ($slashCommands as $command)
@@ -158,9 +158,9 @@ if (isset($_POST['generate']))
                 $commandIfStatements .= "\n    {\n\n    }";
             }
         }
-    }
 
-    $generatedPlugin .= sprintf($slashCommandInitialization, $className, $commandIfStatements);
+        $generatedPlugin .= sprintf($slashCommandInitialization, $className, $commandIfStatements);
+    }
 
     echo $generatedPlugin;
     return;
