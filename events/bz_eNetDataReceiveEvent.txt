@@ -1,0 +1,13 @@
+case bz_eNetDataReceiveEvent: // This event is called each time net data is received.
+{
+    bz_NetTransferEventData_V1* netTransferData = (bz_NetTransferEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (bool)            send  - Whether data is sent or recieved
+    //     (bool)            udp   - Whether the packet is UDP
+    //     (unsigned int)    iSize - Size of the packet
+    //     (unsigned char*)  data  - The packet data
+    //     (double)          time  - The current server time
+}
+break;

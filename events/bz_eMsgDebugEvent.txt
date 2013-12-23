@@ -1,0 +1,14 @@
+case bz_eMsgDebugEvent: // This event is called every time packets are sent to the server.
+{
+    bz_MsgDebugEventData_V1* msgData = (bz_MsgDebugEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (char[2])  code     - A 2-byte message code to identify what the data is.
+    //     (size_t)   len      - The size of the incoming message.
+    //     (char*)    msg      - The actual message telling the server what the data contains, based on the code data.
+    //     (bool)     receive  - Whether or not to receive the packets
+    //     (int)      playerID - The player that sent the data.
+    //     (double)   time     - The current server time
+}
+break;

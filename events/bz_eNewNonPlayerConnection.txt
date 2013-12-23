@@ -1,0 +1,11 @@
+case bz_eNewNonPlayerConnection: // This event is called each time there is a connection to the server not from a player
+{
+    bz_NewNonPlayerConnectionEventData_V1* nonPlayerData = (bz_NewNonPlayerConnectionEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)           connectionID - The ID of the connection
+    //     (void*)         data         - The packet data
+    //     (unsigned int)  size         - The size of the packet
+}
+break;
