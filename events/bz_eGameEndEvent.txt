@@ -1,0 +1,10 @@
+case bz_eGameEndEvent: // This event is called each time a game ends.
+{
+    bz_GameStartEndEventData_V1* gameEndData = (bz_GameStartEndEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (double) duration  - The duration (in seconds) of the game.
+    //     (double) eventTime - The server time the event occurred (in seconds).
+}
+break;

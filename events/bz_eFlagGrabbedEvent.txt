@@ -1,0 +1,11 @@
+case bz_eFlagGrabbedEvent: // This event is called each time a flag is grabbed by a player.
+{
+    bz_FlagGrabbedEventData_V1* flagGrabData = (bz_FlagGrabbedEventData_V1*)eventData;
+
+    //  Data
+    //  ---
+    //     (int)       playerID - The player that grabbed the flag
+    //     (int)       flagID   - The flag ID that was grabbed
+    //     (float[3])  pos      - The position at which the flag was grabbed
+}
+break;
