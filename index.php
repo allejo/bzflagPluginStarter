@@ -21,8 +21,9 @@ if (isset($_POST['generate']))
 {
     header("Content-Type: text/plain");
 
+    // Let's make some easy reference variables
     $pluginName = (strlen($_POST['plugin-name']) > 0) ? $_POST['plugin-name'] : "SAMPLE_PLUGIN";
-    $author = $_POST['author'];
+    $author = (strlen($_POST['author']) > 0) ? $_POST['author'] : "John Doe";
     $license = $_POST['license'];
     $slashCommands = preg_split("/[\r\n]+/", $_POST['slashcommands'], -1, PREG_SPLIT_NO_EMPTY);
     $events = $_POST['Events'];
@@ -141,17 +142,17 @@ if (isset($_POST['generate']))
     // Format them respectively according to choice of the user
     foreach ($events as $event)
     {
+        // We need to get all the data for an event so let's get it and store it
+        $eventData = file_get_contents('events/' . $event . '.txt');
+
+        // Check to see if we want to put the open brace on the same line as the if statement
+        $braces = ($_POST['braces'] == "same") ? "{ " : "";
+
+        // If we want the open brace on the new line, then let's add it to a new line
+        $endOfLine = ($_POST['braces'] == "same") ? "" : "\n\t{";
+
         if ($_POST['eventhandling'] == "if")
         {
-            // We need to get all the data for an event so let's get it and store it
-            $eventData = file_get_contents('events/' . $event . '.txt');
-
-            // Check to see if we want to put the open brace on the same line as the if statement
-            $braces = ($_POST['braces'] == "same") ? "{ " : "";
-
-            // If we want the open brace on the new line, then let's add it to a new line
-            $endOfLine = ($_POST['braces'] == "same") ? "" : "\n\t{";
-
             // This will be our default if statement template, if we are not on our first condition,
             // then we will look prepend an "else" to form an "else if" condition
             $defaultIfStatemet = "if (eventData->eventType == " . $event . ")";
@@ -171,8 +172,7 @@ if (isset($_POST['generate']))
         }
         else if ($_POST['eventhandling'] == "switch")
         {
-            $eventData = file_get_contents('events/' . $event . '.txt');
-            $formattedCode = sprintf($eventData, "case " . $event . ":", "", "\n\t{", "\n\tbreak;\n\n");
+            $formattedCode = sprintf($eventData, "case " . $event . ":", $braces, $endOfLine, "\n\tbreak;\n\n");
 
             $switchEventCode .= str_replace("\t", "\t\t", $formattedCode);
         }
