@@ -1,15 +1,13 @@
-        case bz_ePlayerUpdateEvent: // This event is called each time a player sends an update to the server
-        {
-            bz_PlayerUpdateEventData_V1* updateData = (bz_PlayerUpdateEventData_V1*)eventData;
+	%s %s// This event is called each time a player sends an update to the server%s
+		bz_PlayerUpdateEventData_V1* updateData = (bz_PlayerUpdateEventData_V1*)eventData;
 
-            // Data
-            // ---
-            //   (int)       playerID - ID of the player that sent the update
-            //   (float[3])  pos      - The player's current position
-            //   (float[3])  velocity - The player's current velocity
-            //   (float)     azimuth  - The direction the player is facing
-            //   (float)     angvel   - The player's angular velocity
-            //   (int)       phydrv   - The physics driver the player is on
-            //   (double)    time     - The current server time
-        }
-        break;
+		// Data
+		// ---
+		//   (int)       playerID - ID of the player that sent the update
+		//   (float[3])  pos      - The player's current position
+		//   (float[3])  velocity - The player's current velocity
+		//   (float)     azimuth  - The direction the player is facing
+		//   (float)     angvel   - The player's angular velocity
+		//   (int)       phydrv   - The physics driver the player is on
+		//   (double)    time     - The current server time
+	}%s

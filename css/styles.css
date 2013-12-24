@@ -10,10 +10,15 @@ body #main form h2 {
   border-bottom: 1px solid #ececec;
   padding-bottom: 5px;
 }
-body #main form div {
+body #main form section {
   padding-left: 10px;
 }
-body #main form div p {
+body #main form section article {
+  display: inline-block;
+  margin: 0 30px;
+  vertical-align: top;
+}
+body #main form section p {
   display: inline-block;
   width: 290px;
 }

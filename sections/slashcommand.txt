@@ -1,4 +1,3 @@
-bool %s::SlashCommand(int playerID, bz_ApiString command, bz_ApiString /*message*/, bz_APIStringList *params)
-{
+bool %s::SlashCommand(int playerID, bz_ApiString command, bz_ApiString /*message*/, bz_APIStringList *params)%s{
 %s
 }

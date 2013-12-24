@@ -17,18 +17,16 @@ BZFlag Plugin Starter
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
 if (isset($_POST['generate']))
 {
     header("Content-Type: text/plain");
 
-    $pluginName = $_POST['plugin-name'];
+    $pluginName = (strlen($_POST['plugin-name']) > 0) ? $_POST['plugin-name'] : "SAMPLE_PLUGIN";
     $author = $_POST['author'];
     $license = $_POST['license'];
     $slashCommands = preg_split("/[\r\n]+/", $_POST['slashcommands'], -1, PREG_SPLIT_NO_EMPTY);
     $events = $_POST['Events'];
+    $bracesLocation = ($_POST['braces'] == "new") ? "\n" : " ";
 
     // Get the plugin name, remove all the white space, and use CamelCase so we
     // can use this as the class name when we generate the plugin
@@ -76,7 +74,7 @@ if (isset($_POST['generate']))
     }
 
     // Add the class header to the generated code so far
-    $generatedPlugin .= sprintf($classHeader, $className, $classInheritance, $pluginName, $slashCommandDeclaraction, $className) . "\n\n";
+    $generatedPlugin .= sprintf($classHeader, $className, $classInheritance, $bracesLocation, $pluginName, $slashCommandDeclaraction, $className) . "\n\n";
 
     // Get the init() template
     $initInitialization = file_get_contents('sections/init.txt');
@@ -86,27 +84,27 @@ if (isset($_POST['generate']))
     // Check if we have to handle events in order to register them
     if (count($events) > 0)
     {
-        $registeredEvents = "\n\n    // Register our events with Register()";
+        $registeredEvents = "\n\n\t// Register our events with Register()";
 
         foreach ($_POST['Events'] as $event)
         {
-            $registeredEvents .= "\n    Register(" . $event . ");";
+            $registeredEvents .= "\n\tRegister(" . $event . ");";
         }
     }
 
     // Check if we have to handle slash commands to register them
     if (count($slashCommands) > 0)
     {
-        $registeredSlashCommands = "\n\n    // Register our custom slash commands";
+        $registeredSlashCommands = "\n\n\t// Register our custom slash commands";
 
         foreach ($slashCommands as $command)
         {
-            $registeredSlashCommands .= "\n    bz_registerCustomSlashCommand('" . $command . "', this);";
+            $registeredSlashCommands .= "\n\tbz_registerCustomSlashCommand('" . $command . "', this);";
         }
     }
 
     // Add our init() code to the generated code thus far
-    $generatedPlugin .= sprintf($initInitialization, $className, $className, $registeredEvents, $registeredSlashCommands) . "\n\n";
+    $generatedPlugin .= sprintf($initInitialization, $className, $bracesLocation, $className, $registeredEvents, $registeredSlashCommands) . "\n\n";
 
     // Let's handle the Cleanup() function now
     $cleanupInitialization = file_get_contents('sections/cleanup.txt');
@@ -115,31 +113,81 @@ if (isset($_POST['generate']))
     // Check if there are any slash commands that we need to handle
     if (count($slashCommands) > 0)
     {
-        $cleanupSlashCommands = "\n\n    // Clean up our custom slash commands";
+        $cleanupSlashCommands = "\n\n\t// Clean up our custom slash commands";
 
         foreach ($slashCommands as $command)
         {
-            $cleanupSlashCommands .= "\n    bz_removeCustomSlashCommand('" . $command . "');";
+            $cleanupSlashCommands .= "\n\tbz_removeCustomSlashCommand('" . $command . "');";
         }
     }
 
     // Add our cleanup() to the generated code
-    $generatedPlugin .= sprintf($cleanupInitialization, $className, $className, $cleanupSlashCommands) . "\n\n";
+    $generatedPlugin .= sprintf($cleanupInitialization, $className, $bracesLocation, $className, $cleanupSlashCommands) . "\n\n";
 
     // Store our events template here for now
     $switchEvent = file_get_contents('sections/event.txt');
     $switchEventCode = "";
+    $firstIfStatement = true;
 
-    // Get the data comments for each of the events and add them to the switch statement
+    // If the person choose to use a switch statement, we need to add the code snippet to declare
+    // the switch statement
+    if ($_POST['eventhandling'] == "switch")
+    {
+        $switchEventCode .= "\tswitch (eventData->eventType)";
+        $switchEventCode .= ($_POST['braces'] == "new") ? "\n\t{\n" : " {\n";
+    }
+
+    // Get the data comments for each of the events and add them to the if/switch statement
+    // Format them respectively according to choice of the user
     foreach ($events as $event)
     {
-        $switchEventCode .= file_get_contents('events/' . $event . '.txt') . "\n\n";
+        if ($_POST['eventhandling'] == "if")
+        {
+            // We need to get all the data for an event so let's get it and store it
+            $eventData = file_get_contents('events/' . $event . '.txt');
+
+            // Check to see if we want to put the open brace on the same line as the if statement
+            $braces = ($_POST['braces'] == "same") ? "{ " : "";
+
+            // If we want the open brace on the new line, then let's add it to a new line
+            $endOfLine = ($_POST['braces'] == "same") ? "" : "\n\t{";
+
+            // This will be our default if statement template, if we are not on our first condition,
+            // then we will look prepend an "else" to form an "else if" condition
+            $defaultIfStatemet = "if (eventData->eventType == " . $event . ")";
+
+            // Check whether or not to form an "else if" condition
+            if ($firstIfStatement)
+            {
+                $firstIfStatement = false;
+            }
+            else
+            {
+                $defaultIfStatemet = "\n\telse " . $defaultIfStatemet;
+            }
+
+            // Add the generated code
+            $switchEventCode .= sprintf($eventData, $defaultIfStatemet, $braces, $endOfLine, "");
+        }
+        else if ($_POST['eventhandling'] == "switch")
+        {
+            $eventData = file_get_contents('events/' . $event . '.txt');
+            $formattedCode = sprintf($eventData, "case " . $event . ":", "", "\n\t{", "\n\tbreak;\n\n");
+
+            $switchEventCode .= str_replace("\t", "\t\t", $formattedCode);
+        }
+    }
+
+    // If we're generating a switch statement, then let's add the default case and close the switch statement
+    if ($_POST['eventhandling'] == "switch")
+    {
+        $switchEventCode .= "\t\tdefault: break;\n\t}";
     }
 
     // Add our switch statement to the generated code
-    $generatedPlugin .= sprintf($switchEvent, $className, $switchEventCode) . "\n\n";
+    $generatedPlugin .= sprintf($switchEvent, $className, $bracesLocation, $switchEventCode) . "\n\n";
 
-
+    // We have slash commands to handle
     if (count($slashCommands) > 0)
     {
         $slashCommandInitialization = file_get_contents('sections/slashcommand.txt');
@@ -150,18 +198,30 @@ if (isset($_POST['generate']))
         {
             if ($firstStatement)
             {
-                $commandIfStatements .= '    if (command == "' . $command . '")';
-                $commandIfStatements .= "\n    {\n\n    }";
+                $commandIfStatements .= "\tif (command == \"" . $command . '")';
                 $firstStatement = false;
             }
             else
             {
-                $commandIfStatements .= "\n    else if (command == \"" . $command . '")';
-                $commandIfStatements .= "\n    {\n\n    }";
+                $commandIfStatements .= "\n\telse if (command == \"" . $command . '")';
             }
+
+            $commandIfStatements .= $bracesLocation . (($bracesLocation == "\n") ? "\t" : "") . "{\n\n\t\treturn true;\n\t}";
         }
 
-        $generatedPlugin .= sprintf($slashCommandInitialization, $className, $commandIfStatements);
+        $generatedPlugin .= sprintf($slashCommandInitialization, $className, $bracesLocation, $commandIfStatements);
+    }
+
+    // The templates used use tabs by default for indentation so we can easily switch them if needed
+    // The user has requested to use four or 2 spaces instead, so let's swap all the tabs we have to
+    // use spaces instead
+    if ($_POST['spacing'] == "four")
+    {
+        $generatedPlugin = str_replace("\t", "    ", $generatedPlugin);
+    }
+    else if ($_POST['spacing'] == "two")
+    {
+        $generatedPlugin = str_replace("\t", "  ", $generatedPlugin);
     }
 
     echo $generatedPlugin;
@@ -234,18 +294,49 @@ sort($events);
                         }
                     ?>
                 </select>
+
                 <h2>Plug-in Events</h2>
-                <div>
+                <section>
                     <?php
                         foreach ($events as $event)
                         {
                             echo '<p><input type="checkbox" name="Events[]" value="' . $event . '" /> ' . $event . '</p>';
                         }
                     ?>
-                </div>
+                </section>
+
                 <h2>Plug-in Slashcommands</h2>
                 <p>Insert one slash command per line without the '/'.</p>
                 <textarea name="slashcommands"></textarea>
+
+                <h2>Plug-in Source Code Settings</h2>
+                <section>
+                    <article>
+                        <h3>Spacing</h3>
+                        <input type="radio" name="spacing" value="two"> 2 Spaces<br>
+                        <input type="radio" name="spacing" value="four" checked="true"> 4 Spaces<br>
+                        <input type="radio" name="spacing" value="tabs"> Tabs<br>
+                    </article>
+
+                    <article>
+                        <h3>Event Handling</h3>
+                        <input type="radio" name="eventhandling" value="if"> If Statement<br>
+                        <input type="radio" name="eventhandling" value="switch" checked="true"> Switch Statement<br>
+                    </article>
+
+                    <article>
+                        <h3>Braces Placement</h3>
+                        <input type="radio" name="braces" value="new" checked="true"> New Line<br>
+                        <input type="radio" name="braces" value="same"> Same Line<br>
+                    </article>
+
+                    <article>
+                        <h3>Show Debug Messages</h3>
+                        <input type="radio" name="debug" value="true" checked="true"> Yes<br>
+                        <input type="radio" name="debug" value="false"> No<br>
+                    </article>
+                </section>
+
                 <input type="hidden" name="generate" value="true" />
                 <input type="submit" value="Generate" />
             </form>

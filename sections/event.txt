@@ -1,9 +1,3 @@
-void %s::Event(bz_EventData *eventData)
-{
-    switch (eventData->eventType)
-    {
+void %s::Event(bz_EventData *eventData)%s{
 %s
-        default:
-        break;
-    }
 }

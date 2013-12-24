@@ -1,11 +1,9 @@
-        case bz_ePlayerPausedEvent: // This event is called each time a playing tank is paused
-        {
-            bz_PlayerPausedEventData_V1* pauseData = (bz_PlayerPausedEventData_V1*)eventData;
+	%s %s// This event is called each time a playing tank is paused%s
+		bz_PlayerPausedEventData_V1* pauseData = (bz_PlayerPausedEventData_V1*)eventData;
 
-            // Data
-            // ---
-            //    (int)     playerID - ID of the player who paused.
-            //    (bool)    pause    - Whether the player is pausing (true) or unpausing (false)
-            //    (double)  time     - Time local server time for the event.
-        }
-        break;
+		// Data
+		// ---
+		//    (int)     playerID - ID of the player who paused.
+		//    (bool)    pause    - Whether the player is pausing (true) or unpausing (false)
+		//    (double)  time     - Time local server time for the event.
+	}%s
