@@ -1,12 +1,10 @@
-        case bz_eMessageFilteredEvent: // This event is called whenever a message is censored by the swear filter
-        {
-            bz_MessageFilteredEventData_V1* msgFilteredData = (bz_MessageFilteredEventData_V1*)eventData;
+	%s %s// This event is called whenever a message is censored by the swear filter%s
+		bz_MessageFilteredEventData_V1* msgFilteredData = (bz_MessageFilteredEventData_V1*)eventData;
 
-            // Data
-            // ---
-            //    (int)           player          - The player who sent the filtered message
-            //    (bz_ApiString)  rawMessage      - The unfiltered text of the message
-            //    (bz_ApiString)  filteredMessage - The text of the message after passing through the filter
-            //    (double)        time            - The local server time at which the message was sent
-        }
-        break;
+		// Data
+		// ---
+		//    (int)           player          - The player who sent the filtered message
+		//    (bz_ApiString)  rawMessage      - The unfiltered text of the message
+		//    (bz_ApiString)  filteredMessage - The text of the message after passing through the filter
+		//    (double)        time            - The local server time at which the message was sent
+	}%s

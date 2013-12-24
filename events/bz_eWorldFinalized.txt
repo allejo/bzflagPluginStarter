@@ -1,7 +1,5 @@
-        case bz_eWorldFinalized: // This event is called when the world is done loading
-        {
-            // Data
-            // ---
-            //    This event is only a notification
-        }
-        break;
+	%s %s// This event is called when the world is done loading%s
+		// Data
+		// ---
+		//    This event is only a notification
+	}%s

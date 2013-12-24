@@ -14,9 +14,14 @@ body {
                 padding-bottom: 5px;
             }
 
-            div {
+            section {
                 padding-left: 10px;
 
+                article {
+                    display: inline-block;
+                    margin: 0 30px;
+                    vertical-align: top;
+                }
                 p {
                     display: inline-block;
                     width: 290px;

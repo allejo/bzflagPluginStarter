@@ -1,15 +1,13 @@
-        case bz_eAllowCTFCaptureEvent: // This event is called each time a flag is about to be captured.
-        {
-            bz_AllowCTFCaptureEventData_V1* allowCtfData = (bz_AllowCTFCaptureEventData_V1*)eventData;
+	%s %s// This event is called each time a flag is about to be captured%s
+		bz_AllowCTFCaptureEventData_V1* allowCtfData = (bz_AllowCTFCaptureEventData_V1*)eventData;
 
-            // Data
-            // ---
-            //    (int)           playerCapping - The ID of the player making the capture
-            //    (bz_eTeamType)  teamCapped    - The team making the capture
-            //    (bz_eTeamType)  teamCapping   - The team whose flag is being captured
-            //    (float[3])      pos           - The position of the player
-            //    (float)         rot           - The direction the player is
-            //    (bool)          allow         - Whether or not to allow the capture
-            //    (double)        time          - The server time at which the event occurred (in seconds).
-        }
-        break;
+		// Data
+		// ---
+		//    (int)           playerCapping - The ID of the player making the capture
+		//    (bz_eTeamType)  teamCapped    - The team making the capture
+		//    (bz_eTeamType)  teamCapping   - The team whose flag is being captured
+		//    (float[3])      pos           - The position of the player
+		//    (float)         rot           - The direction the player is
+		//    (bool)          allow         - Whether or not to allow the capture
+		//    (double)        time          - The server time at which the event occurred (in seconds).
+	}%s

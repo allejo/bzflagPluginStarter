@@ -1,12 +1,10 @@
-        case bz_eKickEvent: // This event is triggered when a player is kicked from the server
-        {
-            bz_KickEventData_V1* kickData = (bz_KickEventData_V1*)eventData;
+	%s %s// This event is triggered when a player is kicked from the server%s
+		bz_KickEventData_V1* kickData = (bz_KickEventData_V1*)eventData;
 
-            // Data
-            // ---
-            //    (int)           kickerID  - The ID of the player who performed the kick.
-            //    (int)           kickedID  - The ID of the player being kicked from the server.
-            //    (bz_ApiString)  reason    - The reason (sent to kicked player).
-            //    (double)        eventTime - The server time the event occurred (in seconds.)
-        }
-        break;
+		// Data
+		// ---
+		//    (int)           kickerID  - The ID of the player who performed the kick.
+		//    (int)           kickedID  - The ID of the player being kicked from the server.
+		//    (bz_ApiString)  reason    - The reason (sent to kicked player).
+		//    (double)        eventTime - The server time the event occurred (in seconds.)
+	}%s

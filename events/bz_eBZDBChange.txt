@@ -1,10 +1,8 @@
-        case bz_eBZDBChange:
-        {
-            bz_BZDBChangeData_V1* bzdbData = (bz_BZDBChangeData_V1*)eventData;
+	%s %s//This event  is called each time a BZDB variable is changed%s
+		bz_BZDBChangeData_V1* bzdbData = (bz_BZDBChangeData_V1*)eventData;
 
-            // Data
-            // ---
-            //    (bz_ApiString)  key - The variable that was changed
-            //    (bz_ApiString)  value - What the variable was changed too
-        }
-        break;
+		// Data
+		// ---
+		//    (bz_ApiString)  key - The variable that was changed
+		//    (bz_ApiString)  value - What the variable was changed too
+	}%s

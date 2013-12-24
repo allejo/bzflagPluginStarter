@@ -1,12 +1,10 @@
-        case bz_eFlagTransferredEvent: // This event is called each time a player with Thief steals a flag.
-        {
-            bz_FlagTransferredEventData_V1* flagTransferredData = (bz_FlagTransferredEventData_V1*)eventData;
+	%s %s// This event is called each time a player with Thief steals a flag%s
+		bz_FlagTransferredEventData_V1* flagTransferredData = (bz_FlagTransferredEventData_V1*)eventData;
 
-            // Data
-            // ---
-            //    (int)          fromPlayerID - The ID of the player that stole the flag
-            //    (int)          toPlayerID   - The ID of the player whose flag was stolen
-            //    (const char*)  flagType     - The flag code of the stolen flag
-            //    (enum)         action       - Action The action taken for the transfer. Values: ContinueSteal, CancelSteal, DropThie
-        }
-        break;
+		// Data
+		// ---
+		//    (int)          fromPlayerID - The ID of the player that stole the flag
+		//    (int)          toPlayerID   - The ID of the player whose flag was stolen
+		//    (const char*)  flagType     - The flag code of the stolen flag
+		//    (enum)         action       - Action The action taken for the transfer. Values: ContinueSteal, CancelSteal, DropThie
+	}%s
