@@ -2,8 +2,8 @@
         {
             bz_PlayerAuthEvent_V1* authData = (bz_PlayerAuthEvent_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (int)  playerID - The ID of the player who's authorization changed
+            // Data
+            // ---
+            //    (int)  playerID - The ID of the player who's authorization changed
         }
         break;

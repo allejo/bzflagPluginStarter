@@ -2,9 +2,9 @@
         {
             bz_GameStartEndEventData_V1* gameStartData = (bz_GameStartEndEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (double) duration  - The duration (in seconds) of the game.
-            //     (double) eventTime - The server time the event occurred (in seconds).
+            // Data
+            // ---
+            //    (double) duration  - The duration (in seconds) of the game.
+            //    (double) eventTime - The server time the event occurred (in seconds).
         }
         break;

@@ -2,12 +2,12 @@
         {
             bz_eNetDataSendEvent_V1* netSentData = (bz_eNetDataSendEvent_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (bool)            send  - Whether data is sent or recieved
-            //     (bool)            udp   - Whether the packet is UDP
-            //     (unsigned int)    iSize - Size of the packet
-            //     (unsigned char*)  data  - The packet data
-            //     (double)          time  - The current server time
+            // Data
+            // ---
+            //    (bool)            send  - Whether data is sent or recieved
+            //    (bool)            udp   - Whether the packet is UDP
+            //    (unsigned int)    iSize - Size of the packet
+            //    (unsigned char*)  data  - The packet data
+            //    (double)          time  - The current server time
         }
         break;

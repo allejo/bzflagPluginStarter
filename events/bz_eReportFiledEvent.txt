@@ -2,10 +2,10 @@
         {
             bz_ReportFiledEventData_V1* reportData = (bz_ReportFiledEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (int)           playerID  - The player ID that is filing the report.
-            //     (bz_ApiString)  message   - The report message that is filed.
-            //     (double)        eventTime - Time of event.
+            // Data
+            // ---
+            //    (int)           playerID  - The player ID that is filing the report.
+            //    (bz_ApiString)  message   - The report message that is filed.
+            //    (double)        eventTime - Time of event.
         }
         break;

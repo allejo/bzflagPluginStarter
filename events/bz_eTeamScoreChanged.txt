@@ -2,12 +2,12 @@
         {
             bz_TeamScoreChangeEventData_V1* teamScoreData = (bz_TeamScoreChangeEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (bz_eTeamType)     team      - The team that had a change of score.
-            //     (bz_eScoreElement) element   - The type of score that is being changed.
-            //     (int)              thisValue - The new amount of element score the team has.
-            //     (int)              lastValue - The old amount of element score the team had.
-            //     (double)           time      - Time local server time for the event.
+            // Data
+            // ---
+            //    (bz_eTeamType)     team      - The team that had a change of score.
+            //    (bz_eScoreElement) element   - The type of score that is being changed.
+            //    (int)              thisValue - The new amount of element score the team has.
+            //    (int)              lastValue - The old amount of element score the team had.
+            //    (double)           time      - Time local server time for the event.
         }
         break;

@@ -2,13 +2,13 @@
         {
             bz_BanEventData_V1* banData = (bz_BanEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (int)           bannerID  - This value is the player ID for the banner.
-            //     (int)           banneeID  - This value is the player ID for the bannee.
-            //     (int)           duration  - This value is the duration of the ban in minutes.
-            //     (bz_ApiString)  reason    - This value contains the reason why and by who a player got banned.
-            //     (bz_ApiString)  ipAddress - This value contains the ipaddress of the bannee.
-            //     (double)        eventTime - This value is the local server time of the event.
+            // Data
+            // ---
+            //    (int)           bannerID  - This value is the player ID for the banner.
+            //    (int)           banneeID  - This value is the player ID for the bannee.
+            //    (int)           duration  - This value is the duration of the ban in minutes.
+            //    (bz_ApiString)  reason    - This value contains the reason why and by who a player got banned.
+            //    (bz_ApiString)  ipAddress - This value contains the ipaddress of the bannee.
+            //    (double)        eventTime - This value is the local server time of the event.
         }
         break;

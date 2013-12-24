@@ -2,14 +2,14 @@
         {
             bz_AllowPlayerEventData_V1* allowPlayerData = (bz_AllowPlayerEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (int)           playerID  - This value is the player ID for the joining player.
-            //     (bz_ApiString)  callsign  - This value is the callsign for the player.
-            //     (bz_ApiString)  ipAddress - This value is the IPv4 address of the player.
-            //     (bz_ApiString)  reason    - This value is the reason for any denials of admittance, it will be reported back to the player.
-            //     (bool)          allow     - This value is the current allow/deny state for the join. Plug-ins wishing to overide the server
-            //                                 allow/deny logic can change this value.
-            //     (double)        eventTime - This value is the local server time of the event.
+            // Data
+            // ---
+            //    (int)           playerID  - This value is the player ID for the joining player.
+            //    (bz_ApiString)  callsign  - This value is the callsign for the player.
+            //    (bz_ApiString)  ipAddress - This value is the IPv4 address of the player.
+            //    (bz_ApiString)  reason    - This value is the reason for any denials of admittance, it will be reported back to the player.
+            //    (bool)          allow     - This value is the current allow/deny state for the join. Plug-ins wishing to overide the server
+            //                                allow/deny logic can change this value.
+            //    (double)        eventTime - This value is the local server time of the event.
         }
         break;

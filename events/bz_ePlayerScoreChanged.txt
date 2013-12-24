@@ -2,12 +2,12 @@
         {
             bz_PlayerScoreChangeEventData_V1* scoreData = (bz_PlayerScoreChangeEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (int)               playerID  - Player that has had a change of score.
-            //     (bz_eScoreElement)  element   - The type of score that is being changed.
-            //     (int)               thisValue - The new amount of element score the playerID has.
-            //     (int)               lastValue - The old amount of element score the playerID had.
-            //     (double)            time      - Time local server time for the event.
+            // Data
+            // ---
+            //    (int)               playerID  - Player that has had a change of score.
+            //    (bz_eScoreElement)  element   - The type of score that is being changed.
+            //    (int)               thisValue - The new amount of element score the playerID has.
+            //    (int)               lastValue - The old amount of element score the playerID had.
+            //    (double)            time      - Time local server time for the event.
         }
         break;

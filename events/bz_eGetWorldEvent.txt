@@ -2,24 +2,24 @@
         {
             bz_GetWorldEventData_V1* worldData = (bz_GetWorldEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (bool)         generated - The value representing the state of the world generation. If another
-            //                                plug-in has generated a world, this value will be set to true. If the
-            //                                plug-in processing this event, adds world geometry using the bz_addWorld
-            //                                methods (bz_addWorldBox, bz_addWorldPyramid etc. ) then it must set this
-            //                                value to true.
-            //     (bool)         ctf       - This value represents the game state being a Capture the Flag (CTF) type
-            //                                game. Mutually exclusive with other game type setings.
-            //     (bool)         rabbit    - This value represents the game state being a Rabbit Hunt type game.
-            //                                Mutually exclusive with other game type setings.
-            //     (bool)         openFFA   - This value represents the game state being a Free For All type game.
-            //                                Mutually exclusive with other game type setings.
-            //     (char*)        worldBlob - A pointer to a memory location from which to read the world stream.
-            //                                Overrides worldFile.
-            //     (bz_ApiString) worldFile - The path to the map file that will be used when this event is completed.
-            //                                If the string is zero length, then either a plug-in defined map or a
-            //                                random map will be used.
-            //     (double)       eventTime - Local Server time of the event.
+            // Data
+            // ---
+            //    (bool)         generated - The value representing the state of the world generation. If another
+            //                               plug-in has generated a world, this value will be set to true. If the
+            //                               plug-in processing this event, adds world geometry using the bz_addWorld
+            //                               methods (bz_addWorldBox, bz_addWorldPyramid etc. ) then it must set this
+            //                               value to true.
+            //    (bool)         ctf       - This value represents the game state being a Capture the Flag (CTF) type
+            //                               game. Mutually exclusive with other game type setings.
+            //    (bool)         rabbit    - This value represents the game state being a Rabbit Hunt type game.
+            //                               Mutually exclusive with other game type setings.
+            //    (bool)         openFFA   - This value represents the game state being a Free For All type game.
+            //                               Mutually exclusive with other game type setings.
+            //    (char*)        worldBlob - A pointer to a memory location from which to read the world stream.
+            //                               Overrides worldFile.
+            //    (bz_ApiString) worldFile - The path to the map file that will be used when this event is completed.
+            //                               If the string is zero length, then either a plug-in defined map or a
+            //                               random map will be used.
+            //    (double)       eventTime - Local Server time of the event.
         }
         break;

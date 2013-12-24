@@ -2,10 +2,10 @@
         {
             bz_KillEventData_V1* killData = (bz_KillEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (int)          killerID - The ID of the player who sent the /kill command
-            //     (int)          killedID - The ID of the player who was killed
-            //     (bz_ApiString) reason   - The reason (sent to killed player).
+            // Data
+            // ---
+            //    (int)          killerID - The ID of the player who sent the /kill command
+            //    (int)          killedID - The ID of the player who was killed
+            //    (bz_ApiString) reason   - The reason (sent to killed player).
         }
         break;

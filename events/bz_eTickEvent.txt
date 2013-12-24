@@ -2,8 +2,8 @@
         {
             bz_TickEventData_V1* tickData = (bz_TickEventData_V1*)eventData;
 
-            //  Data
-            //  ---
-            //     (double)  eventTime - Local Server time of the event (in seconds)
+            // Data
+            // ---
+            //    (double)  eventTime - Local Server time of the event (in seconds)
         }
         break;
