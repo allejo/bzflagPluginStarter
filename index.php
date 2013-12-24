@@ -84,7 +84,7 @@ if (isset($_POST['generate']))
     // Check if we have to handle events in order to register them
     if (count($events) > 0)
     {
-        $registeredEvents = "\n\n\t// Register our events with Register()";
+        $registeredEvents = "\t// Register our events with Register()";
 
         foreach ($_POST['Events'] as $event)
         {
@@ -104,7 +104,7 @@ if (isset($_POST['generate']))
     }
 
     // Add our init() code to the generated code thus far
-    $generatedPlugin .= sprintf($initInitialization, $className, $bracesLocation, $className, $registeredEvents, $registeredSlashCommands) . "\n\n";
+    $generatedPlugin .= sprintf($initInitialization, $className, $bracesLocation, $registeredEvents, $registeredSlashCommands) . "\n\n";
 
     // Let's handle the Cleanup() function now
     $cleanupInitialization = file_get_contents('sections/cleanup.txt');
@@ -122,7 +122,7 @@ if (isset($_POST['generate']))
     }
 
     // Add our cleanup() to the generated code
-    $generatedPlugin .= sprintf($cleanupInitialization, $className, $bracesLocation, $className, $cleanupSlashCommands) . "\n\n";
+    $generatedPlugin .= sprintf($cleanupInitialization, $className, $bracesLocation, $cleanupSlashCommands) . "\n\n";
 
     // Store our events template here for now
     $switchEvent = file_get_contents('sections/event.txt');
@@ -328,12 +328,6 @@ sort($events);
                         <h3>Braces Placement</h3>
                         <input type="radio" name="braces" value="new" checked="true"> New Line<br>
                         <input type="radio" name="braces" value="same"> Same Line<br>
-                    </article>
-
-                    <article>
-                        <h3>Show Debug Messages</h3>
-                        <input type="radio" name="debug" value="true" checked="true"> Yes<br>
-                        <input type="radio" name="debug" value="false"> No<br>
                     </article>
                 </section>
 
