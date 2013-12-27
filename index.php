@@ -172,9 +172,16 @@ if (isset($_POST['generate']))
         }
         else if ($_POST['eventhandling'] == "switch")
         {
+            // Get the event data and format the case block as requested
             $formattedCode = sprintf($eventData, "case " . $event . ":", $braces, $endOfLine, "\n\tbreak;\n\n");
 
-            $switchEventCode .= str_replace("\t", "\t\t", $formattedCode);
+            // Because of lack of indentation, we need to the case block one more time so replace
+            // a single tab with two tabs
+            $formattedCode = str_replace("\t", "\t\t", $formattedCode);
+
+            // Because we replaced all the single tabs with two tabs, we over indented the case
+            // block content, so we need to unindent once so replace 4 tabs with 3
+            $switchEventCode .= str_replace("\t\t\t\t", "\t\t\t", $formattedCode);
         }
     }
 
