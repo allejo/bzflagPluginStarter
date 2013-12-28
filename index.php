@@ -107,7 +107,7 @@ if (isset($_POST['generate']))
 
         foreach ($slashCommands as $command)
         {
-            $registeredSlashCommands .= "\n\tbz_registerCustomSlashCommand('" . $command . "', this);";
+            $registeredSlashCommands .= "\n\tbz_registerCustomSlashCommand(\"" . $command . "\", this);";
         }
     }
 
@@ -125,7 +125,7 @@ if (isset($_POST['generate']))
 
         foreach ($slashCommands as $command)
         {
-            $cleanupSlashCommands .= "\n\tbz_removeCustomSlashCommand('" . $command . "');";
+            $cleanupSlashCommands .= "\n\tbz_removeCustomSlashCommand(\"" . $command . "\");";
         }
     }
 
