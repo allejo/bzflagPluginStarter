@@ -30,8 +30,15 @@ if (isset($_POST['generate']))
     $bracesLocation = ($_POST['braces'] == "new") ? "\n" : " ";
 
     // Get the plugin name, remove all the white space, and use CamelCase so we
-    // can use this as the class name when we generate the plugin
-    $className = preg_replace('/\s+/', '', ucwords($pluginName));
+    // can use this as the class name when we generate the plugin. We also need
+    // to remove any strange symbols and replace all numbers with their literal
+    // equivalent by setting up an array of replacements
+    $numericValues = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    $literalValues = array('Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine');
+
+    $className = preg_replace("/[^A-Za-z0-9_]/", '', $pluginName);
+    $className = str_replace($numericValues, $literalValues, $className);
+    $className = preg_replace('/\s+/', '', ucwords($className));
 
     // We need to get the current date to generate the copyright notices at the
     // top of our generated plugin
