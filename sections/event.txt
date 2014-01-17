@@ -1,3 +1,3 @@
-void %s::Event(bz_EventData *eventData)%s{
+void %s::Event (bz_EventData *eventData)%s{
 %s
 }
