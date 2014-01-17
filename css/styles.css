@@ -22,6 +22,9 @@ body #main form section p {
   display: inline-block;
   width: 290px;
 }
+body #main form section p label {
+  margin: 0 5px;
+}
 body #main form textarea {
   border: 1px solid #666666;
   height: 70px;
