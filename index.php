@@ -1,7 +1,7 @@
 <?php
 /*
 BZFlag Plugin Starter
-    Copyright (C) 2013 Vladimir "allejo" Jimenez
+    Copyright (C) 2013-2014 Vladimir "allejo" Jimenez
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -314,7 +314,11 @@ sort($events);
                     <?php
                         foreach ($events as $event)
                         {
-                            echo '<p><input type="checkbox" name="Events[]" value="' . $event . '" /> ' . $event . '</p>';
+                            echo '<p>';
+                            echo '<input id="evt_' . $event . '" type="checkbox" name="Events[]" value="' . $event . '" />';
+                            echo '<label for="evt_' . $event . '">' . $event . '</label>';
+                            echo '(<a href="http://wiki.bzflag.org/' . $event . '" target="_blank">?</a>)';
+                            echo '</p>';
                         }
                     ?>
                 </section>
@@ -351,7 +355,9 @@ sort($events);
         </div>
 
         <footer>
-            Copyright &copy; 2013 - Vladimir "allejo" Jimenez
+            Copyright &copy; 2013-2014
+            <br />
+            <small>Vladimir "allejo" Jimenez</small>
         </footer>
     </body>
 </html>
