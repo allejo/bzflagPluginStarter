@@ -17,6 +17,8 @@ Features
 
 -   Handles all the useful BZFlag 2.4 API events
 
+-   Includes links to API documentation for each API event
+
 -   Automatically adds documentation for all the supported API events
 
 -   Allows for different coding styles as options when generating code
@@ -43,7 +45,7 @@ Privacy
 
 The official [website](http://allejo.me/misc/bzflag-plugin-starter/) and this repository do **not** store any information about what is generated, including the author name, so there should be no concerns about privacy.
 
-This message does **not** apply to any mirror websites or forks of this project.
+This message may **not** apply to any mirror websites or forks of this project.
 
 License
 -------
