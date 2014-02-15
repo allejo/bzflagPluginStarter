@@ -9,6 +9,14 @@ body {
         form {
             margin-left: 20px;
 
+            .buttons {
+                text-align: center;
+
+                input[type="submit"] {
+                    margin: 20px auto 0;
+                }
+            }
+
             h2 {
                 border-bottom: $border-style;
                 padding-bottom: 5px;
@@ -37,11 +45,6 @@ body {
                 border: 1px solid #666666;
                 height: 70px;
                 width: 250px;
-            }
-
-            input[type="submit"] {
-                display: block;
-                margin: 20px auto 0;
             }
         }
     }

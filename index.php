@@ -17,10 +17,8 @@ BZFlag Plugin Starter
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (isset($_POST['generate']))
+if (isset($_POST['submitted']))
 {
-    header("Content-Type: text/plain");
-
     // Let's make some easy reference variables
     $pluginName = (strlen($_POST['plugin-name']) > 0) ? $_POST['plugin-name'] : "SAMPLE_PLUGIN";
     $author = (strlen($_POST['author']) > 0) ? $_POST['author'] : "John Doe";
@@ -238,6 +236,22 @@ if (isset($_POST['generate']))
         $generatedPlugin = str_replace("\t", "  ", $generatedPlugin);
     }
 
+    // Check whether we would like to generate the plugin in the browser or to download it to a file
+    if ($_POST['generate_button'])
+    {
+        header("Content-Type: text/plain");
+    }
+    else if ($_POST['download_button'])
+    {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-disposition: attachment; filename=' . $className . '.cpp');
+        header('Content-Length: ' . strlen($generatedPlugin));
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Pragma: public');
+    }
+
     echo $generatedPlugin;
     return;
 }
@@ -349,8 +363,11 @@ sort($events);
                     </article>
                 </section>
 
-                <input type="hidden" name="generate" value="true" />
-                <input type="submit" value="Generate" />
+                <div class="buttons">
+                    <input type="hidden" name="submitted" value="true" />
+                    <input type="submit" name="generate_button" value="Generate" />
+                    <input type="submit" name="download_button" value="Download" />
+                </div>
             </form>
         </div>
 
