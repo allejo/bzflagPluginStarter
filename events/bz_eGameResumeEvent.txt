@@ -1,8 +1,8 @@
 	%s %s// This event is triggered when a timed game resumes%s
-        bz_GamePauseResumeEventData_V1* gameResumeData = (bz_GamePauseResumeEventData_V1*)eventData;
+		bz_GamePauseResumeEventData_V1* gameResumeData = (bz_GamePauseResumeEventData_V1*)eventData;
 
-        // Data
-        // ---
-        //    (bz_ApiString) actionBy  - The callsign of whoever triggered the event. By default, it's "SERVER"
-        //    (double)       eventTime - The server time the event occurred (in seconds).
+		// Data
+		// ---
+		//    (bz_ApiString) actionBy  - The callsign of whoever triggered the event. By default, it's "SERVER"
+		//    (double)       eventTime - The server time the event occurred (in seconds).
 	}%s
