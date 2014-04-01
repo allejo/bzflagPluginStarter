@@ -296,6 +296,10 @@ sort($events);
     <head>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
         <title>allejo's BZFlag Plugin Starter</title>
+        <meta name="description" content="Easily generate the structure for a BZFlag plugin in C++.">
+        <meta name="keywords" content="bzflag,plugin,c++,code,skeleton">
+        <meta name="author" content="Vladimir Jimenez">
+        <meta charset="UTF-8">
     </head>
 
     <body>
