@@ -76,7 +76,7 @@ if (isset($_POST['submitted']))
     if (count($slashCommands) > 0)
     {
         $classInheritance .= ", public bz_CustomSlashCommandHandler";
-        $slashCommandDeclaraction = "\n\n    virtual bool SlashCommand (int playerID, bz_ApiString, bz_ApiString, bz_APIStringList*);";
+        $slashCommandDeclaraction = "\n\n\tvirtual bool SlashCommand (int playerID, bz_ApiString, bz_ApiString, bz_APIStringList*);";
     }
 
     // Add the class header to the generated code so far
