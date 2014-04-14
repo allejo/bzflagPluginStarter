@@ -1,5 +1,5 @@
 	%s %s// This event is called each time a shot ends%s
-		bz_eShotEndedEvent_V1* shotEndData = (bz_eShotEndedEvent_V1*)eventData;
+		bz_ShotEndedEventData_V1* shotEndData = (bz_ShotEndedEventData_V1*)eventData;
 
 		// Data
 		// ---
