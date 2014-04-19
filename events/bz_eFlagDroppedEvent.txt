@@ -3,7 +3,8 @@
 
 		// Data
 		// ---
-		//    (int)       playerID - The player that dropped the flag
-		//    (int)       flagID   - The flag ID that was dropped
-		//    (float[3])  pos      - The position at which the flag was dropped
+		//    (int)           playerID - The player that dropped the flag
+		//    (int)           flagID   - The flag ID that was dropped
+		//    (bz_ApiString)  flagType - The flag abbreviation of the flag that was grabbed
+		//    (float[3])      pos      - The position at which the flag was dropped
 	}%s
