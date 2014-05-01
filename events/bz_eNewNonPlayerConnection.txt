@@ -6,4 +6,5 @@
 		//    (int)           connectionID - The ID of the connection
 		//    (void*)         data         - The packet data
 		//    (unsigned int)  size         - The size of the packet
+		//    (double)        eventTime    - This value is the local server time of the event.
 	}%s

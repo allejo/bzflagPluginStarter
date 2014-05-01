@@ -3,6 +3,7 @@
 
 		// Data
 		// ---
-		//    (bz_ApiString)  key - The variable that was changed
-		//    (bz_ApiString)  value - What the variable was changed too
+		//    (bz_ApiString)  key       - The variable that was changed
+		//    (bz_ApiString)  value     - What the variable was changed too
+		//    (double)        eventTime - This value is the local server time of the event.
 	}%s

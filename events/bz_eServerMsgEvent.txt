@@ -3,8 +3,8 @@
 
 		// Data
 		// ---
-		//    (int)           to      - ID of the player receiving the message
-		//    (bz_eTeamType)  team    - The team/group receiving the message
-		//    (bz_ApiString)  message - The message text
-		//    (double)        time    - Time local server time for the event.
+		//    (int)           to       - ID of the player receiving the message
+		//    (bz_eTeamType)  team     - The team/group receiving the message
+		//    (bz_ApiString)  message  - The message text
+		//    (double)        eventTime - Time local server time for the event.
 	}%s

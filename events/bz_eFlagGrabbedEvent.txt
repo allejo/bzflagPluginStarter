@@ -3,8 +3,9 @@
 
 		// Data
 		// ---
-		//    (int)           playerID - The player that grabbed the flag
-		//    (int)           flagID   - The flag ID that was grabbed
-		//    (bz_ApiString)  flagType - The flag abbreviation of the flag that was grabbed
-		//    (float[3])      pos      - The position at which the flag was grabbed
+		//    (int)           playerID  - The player that grabbed the flag
+		//    (int)           flagID    - The flag ID that was grabbed
+		//    (bz_ApiString)  flagType  - The flag abbreviation of the flag that was grabbed
+		//    (float[3])      pos       - The position at which the flag was grabbed
+		//    (double)        eventTime - This value is the local server time of the event.
 	}%s

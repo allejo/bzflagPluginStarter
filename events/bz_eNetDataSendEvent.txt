@@ -3,9 +3,9 @@
 
 		// Data
 		// ---
-		//    (bool)            send  - Whether data is sent or recieved
-		//    (bool)            udp   - Whether the packet is UDP
-		//    (unsigned int)    iSize - Size of the packet
-		//    (unsigned char*)  data  - The packet data
-		//    (double)          time  - The current server time
+		//    (bool)            send      - Whether data is sent or recieved
+		//    (bool)            udp       - Whether the packet is UDP
+		//    (unsigned int)    iSize     - Size of the packet
+		//    (unsigned char*)  data      - The packet data
+		//    (double)          eventTime - The current server time
 	}%s

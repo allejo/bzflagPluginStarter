@@ -3,9 +3,9 @@
 
 		// Data
 		// ---
-		//    (int)          playerID - The ID of the player who is grabbing the flag
-		//    (int)          flagID   - The ID of the flag that is going to be grabbed
-		//    (const char*)  flagType - The type of the flag about to be grabbed
-		//    (bool)         allow    - Whether or not to allow the flag grab
-		//    (double)       time     - The server time at which the event occurred (in seconds).
+		//    (int)          playerID  - The ID of the player who is grabbing the flag
+		//    (int)          flagID    - The ID of the flag that is going to be grabbed
+		//    (const char*)  flagType  - The type of the flag about to be grabbed
+		//    (bool)         allow     - Whether or not to allow the flag grab
+		//    (double)       eventTime - The server time at which the event occurred (in seconds).
 	}%s

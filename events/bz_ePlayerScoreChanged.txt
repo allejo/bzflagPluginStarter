@@ -7,5 +7,5 @@
 		//    (bz_eScoreElement)  element   - The type of score that is being changed.
 		//    (int)               thisValue - The new amount of element score the playerID has.
 		//    (int)               lastValue - The old amount of element score the playerID had.
-		//    (double)            time      - Time local server time for the event.
+		//    (double)            eventTime - Time local server time for the event.
 	}%s

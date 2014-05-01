@@ -6,5 +6,5 @@
 		//    (int)           player          - The player who sent the filtered message
 		//    (bz_ApiString)  rawMessage      - The unfiltered text of the message
 		//    (bz_ApiString)  filteredMessage - The text of the message after passing through the filter
-		//    (double)        time            - The local server time at which the message was sent
+		//    (double)        eventTime       - The local server time at which the message was sent
 	}%s

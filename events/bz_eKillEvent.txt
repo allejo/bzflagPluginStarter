@@ -3,7 +3,8 @@
 
 		// Data
 		// ---
-		//    (int)          killerID - The ID of the player who sent the /kill command
-		//    (int)          killedID - The ID of the player who was killed
-		//    (bz_ApiString) reason   - The reason (sent to killed player).
+		//    (int)           killerID  - The ID of the player who sent the /kill command
+		//    (int)           killedID  - The ID of the player who was killed
+		//    (bz_ApiString)  reason    - The reason (sent to killed player).
+		//    (double)        eventTime - This value is the local server time of the event.
 	}%s

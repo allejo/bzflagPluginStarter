@@ -3,7 +3,7 @@
 
 		// Data
 		// ---
-		//    (int)     playerID - ID of the player who paused.
-		//    (bool)    pause    - Whether the player is pausing (true) or unpausing (false)
-		//    (double)  time     - Time local server time for the event.
+		//    (int)     playerID  - ID of the player who paused.
+		//    (bool)    pause     - Whether the player is pausing (true) or unpausing (false)
+		//    (double)  eventTime - Time local server time for the event.
 	}%s

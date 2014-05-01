@@ -3,11 +3,11 @@
 
 		// Data
 		// ---
-		//    (int)           from    - The player who sent the slash command
-		//    (bool)          handled - The current state representing if the command has been handled by a previous plug-in.
-		//                              Plug-ins that handle the command should set this value to true to communicate it's state
-		//                              to other plug-ins that have yet to process.
-		//    (bz_ApiString)  message - The full text of the chat message for the slash command, containing the command and all
-		//                              associated parameters.
-		//    (double)        time    - The local server time of the event.
+		//    (int)           from      - The player who sent the slash command
+		//    (bool)          handled   - The current state representing if the command has been handled by a previous plug-in.
+		//                                Plug-ins that handle the command should set this value to true to communicate it's state
+		//                                to other plug-ins that have yet to process.
+		//    (bz_ApiString)  message   - The full text of the chat message for the slash command, containing the command and all
+		//                                associated parameters.
+		//    (double)        eventTime - The local server time of the event.
 	}%s

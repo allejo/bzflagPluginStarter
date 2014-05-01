@@ -3,7 +3,8 @@
 
 		// Data
 		// ---
-		//    (int)  playerID - The player ending the shot
-		//    (int)  shotID   - The shot ID
-		//    (bool) explode  - Whether the shot exploded or not
+		//    (int)     playerID  - The player ending the shot
+		//    (int)     shotID    - The shot ID
+		//    (bool)    explode   - Whether the shot exploded or not
+		//    (double)  eventTime - This value is the local server time of the event.
 	}%s

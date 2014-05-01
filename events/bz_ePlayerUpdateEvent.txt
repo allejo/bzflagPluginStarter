@@ -3,11 +3,11 @@
 
 		// Data
 		// ---
-		//   (int)       playerID - ID of the player that sent the update
-		//   (float[3])  pos      - The player's current position
-		//   (float[3])  velocity - The player's current velocity
-		//   (float)     azimuth  - The direction the player is facing
-		//   (float)     angvel   - The player's angular velocity
-		//   (int)       phydrv   - The physics driver the player is on
-		//   (double)    time     - The current server time
+		//   (int)       playerID  - ID of the player that sent the update
+		//   (float[3])  pos       - The player's current position
+		//   (float[3])  velocity  - The player's current velocity
+		//   (float)     azimuth   - The direction the player is facing
+		//   (float)     angvel    - The player's angular velocity
+		//   (int)       phydrv    - The physics driver the player is on
+		//   (double)    eventTime - The current server time
 	}%s

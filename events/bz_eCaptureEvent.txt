@@ -8,5 +8,5 @@
 		//    (int)           playerCapping - The player who captured the flag.
 		//    (float[3])      pos           - The world position(X,Y,Z) where the flag has been captured
 		//    (float)         rot           - The rotational orientation of the capturing player
-		//    (double)        time          - This value is the local server time of the event.
+		//    (double)        eventTime     - This value is the local server time of the event.
 	}%s

@@ -9,5 +9,5 @@
 		//    (float[3])      pos           - The position of the player
 		//    (float)         rot           - The direction the player is
 		//    (bool)          allow         - Whether or not to allow the capture
-		//    (double)        time          - The server time at which the event occurred (in seconds).
+		//    (double)        eventTime     - The server time at which the event occurred (in seconds).
 	}%s

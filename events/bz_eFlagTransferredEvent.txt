@@ -6,5 +6,6 @@
 		//    (int)          fromPlayerID - The ID of the player that stole the flag
 		//    (int)          toPlayerID   - The ID of the player whose flag was stolen
 		//    (const char*)  flagType     - The flag code of the stolen flag
-		//    (enum)         action       - Action The action taken for the transfer. Values: ContinueSteal, CancelSteal, DropThie
+		//    (enum)         action       - Action The action taken for the transfer. Values: ContinueSteal, CancelSteal, DropThief
+		//    (double)       eventTime    - This value is the local server time of the event.
 	}%s

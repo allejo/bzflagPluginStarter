@@ -10,5 +10,5 @@
 		//   (bz_ApiString)          flagKilledWith - The flag name the owner of the shot had when the shot was fired.
 		//   (int)                   shotID         - The shot ID that killed the player, if the player was not killed by a shot, the id will be -1.
 		//   (bz_PlayerUpdateState)  state          - The state record for the killed player at the time of the event
-		//   (double)                time           - Time of the event on the server.
+		//   (double)                eventTime      - Time of the event on the server.
 	}%s
