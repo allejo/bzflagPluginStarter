@@ -32,6 +32,7 @@ if (isset($_POST['submitted']))
                        "type" => $_POST['FlagType']
                    );
     $bracesLocation = ($_POST['braces'] == "new") ? "\n" : " ";
+    $disableComments = ($_POST['disableComments'] == "true");
 
     // Get the plugin name, remove all the white space, and use CamelCase so we
     // can use this as the class name when we generate the plugin. We also need
@@ -116,7 +117,7 @@ if (isset($_POST['submitted']))
         }
     }
 
-    if (count($customFlags['abbr']) > 0)
+    if (count($customFlags['abbr']) > 0 && !empty($customFlags['abbr'][0]))
     {
         $registeredFlags = (count($events) > 0 || count($slashCommands) > 0) ? "\n\n" : "";
         $registeredFlags .= "\t// Register our custom flags";
@@ -167,6 +168,11 @@ if (isset($_POST['submitted']))
     {
         // We need to get all the data for an event so let's get it and store it
         $eventData = file_get_contents('events/' . $event . '.txt');
+
+        if ($disableComments)
+        {
+            // @TODO
+        }
 
         // Check to see if we want to put the open brace on the same line as the if statement
         $braces = ($_POST['braces'] == "same") ? "{ " : "";
@@ -406,6 +412,11 @@ sort($events);
                         <h3>Braces Placement</h3>
                         <input type="radio" name="braces" value="new" checked="true"> New Line<br>
                         <input type="radio" name="braces" value="same"> Same Line<br>
+                    </article>
+
+                    <article>
+                        <h3>Misc</h3>
+                        <input type="checkbox" name="disableComments" value="true"> Disable comments<br>
                     </article>
                 </section>
 
