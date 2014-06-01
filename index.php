@@ -118,7 +118,7 @@ if (isset($_POST['submitted']))
 
     if (count($customFlags['abbr']) > 0)
     {
-        $registeredFlags = (count($slashCommands) > 0) ? "\n\n" : "";
+        $registeredFlags = (count($events) > 0 || count($slashCommands) > 0) ? "\n\n" : "";
         $registeredFlags .= "\t// Register our custom flags";
 
         for ($i = 0; $i < count($customFlags['abbr']); $i++)
