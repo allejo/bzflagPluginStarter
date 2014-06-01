@@ -25,6 +25,12 @@ if (isset($_POST['submitted']))
     $license = $_POST['license'];
     $slashCommands = preg_split("/[\r\n]+/", $_POST['slashcommands'], -1, PREG_SPLIT_NO_EMPTY);
     $events = $_POST['Events'];
+    $customFlags = array(
+                       "abbr" => $_POST['FlagAbbr'],
+                       "name" => $_POST['FlagFullName'],
+                       "desc" => $_POST['FlagDescription'],
+                       "type" => $_POST['FlagType']
+                   );
     $bracesLocation = ($_POST['braces'] == "new") ? "\n" : " ";
 
     // Get the plugin name, remove all the white space, and use CamelCase so we
@@ -101,7 +107,8 @@ if (isset($_POST['submitted']))
     // Check if we have to handle slash commands to register them
     if (count($slashCommands) > 0)
     {
-        $registeredSlashCommands = "\n\n\t// Register our custom slash commands";
+        $registeredSlashCommands = (count($events) > 0) ? "\n\n" : "";
+        $registeredSlashCommands .= "\t// Register our custom slash commands";
 
         foreach ($slashCommands as $command)
         {
@@ -109,8 +116,19 @@ if (isset($_POST['submitted']))
         }
     }
 
+    if (count($customFlags['abbr']) > 0)
+    {
+        $registeredFlags = (count($slashCommands) > 0) ? "\n\n" : "";
+        $registeredFlags .= "\t// Register our custom flags";
+
+        for ($i = 0; $i < count($customFlags['abbr']); $i++)
+        {
+            $registeredFlags .= "\n\tbz_RegisterCustomFlag(\"" . $customFlags['abbr'][$i] . "\", \"" . $customFlags['name'][$i] . "\", \"" . $customFlags['desc'][$i] . "\", 0, " . $customFlags['type'][$i] . ");";
+        }
+    }
+
     // Add our init() code to the generated code thus far
-    $generatedPlugin .= sprintf($initInitialization, $className, $bracesLocation, $registeredEvents, $registeredSlashCommands) . "\n\n";
+    $generatedPlugin .= sprintf($initInitialization, $className, $bracesLocation, $registeredEvents, $registeredSlashCommands, $registeredFlags) . "\n\n";
 
     // Let's handle the Cleanup() function now
     $cleanupInitialization = file_get_contents('sections/cleanup.txt');
