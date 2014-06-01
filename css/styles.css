@@ -1,44 +1,22 @@
-body {
-  font-family: sans-serif;
-  margin: 0 auto;
-  width: 900px;
-}
-body #main form {
-  margin-left: 20px;
-}
-body #main form .buttons {
-  text-align: center;
-}
-body #main form .buttons input[type="submit"] {
-  margin: 20px auto 0;
-}
-body #main form h2 {
-  border-bottom: 1px solid #ececec;
-  padding-bottom: 5px;
-}
-body #main form section {
-  padding-left: 10px;
-}
-body #main form section article {
-  display: inline-block;
-  margin: 0 30px;
-  vertical-align: top;
-}
-body #main form section p {
-  display: inline-block;
-  width: 290px;
-}
-body #main form section p label {
-  margin: 0 5px;
-}
-body #main form textarea {
-  border: 1px solid #666666;
-  height: 70px;
-  width: 250px;
-}
-body footer {
-  border-top: 1px solid #ececec;
-  margin: 20px 0;
-  padding-top: 10px;
-  text-align: center;
-}
+body { font-family: sans-serif; margin: 0 auto; width: 900px; }
+body main form { margin-left: 20px; }
+body main form .buttons { text-align: center; }
+body main form .buttons input[type="submit"] { margin: 20px auto 0; }
+body main form input[type="text"] { border: 1px solid #666666; outline: none; padding: 5px; }
+body main form input[type="text"]:focus { border: 1px solid #0033FF; }
+body main form h2 { border-bottom: 1px solid #ececec; padding-bottom: 5px; }
+body main form h3 { margin-top: 0; }
+body main form section { padding-left: 10px; }
+body main form section article { display: inline-block; margin: 0 30px; vertical-align: top; }
+body main form section article.custom_flag .fa-plus-circle { color: green; }
+body main form section article.custom_flag .fa-minus-circle { color: red; margin-right: 20px; }
+body main form section article.custom_flag .abbr { text-transform: uppercase; width: 30px; }
+body main form section article.custom_flag .name { width: 150px; }
+body main form section article.custom_flag .desc { width: 360px; }
+body main form section.events p { display: inline-block; width: 290px; }
+body main form section.events p label { margin: 0 5px; }
+body main form section.flags .help { color: #888888; font-size: 14px; padding-left: 0; }
+body main form section.flags .help li { list-style-type: none; }
+body main form section.flags .help li span { display: inline-block; width: 85px; }
+body main form textarea { border: 1px solid #666666; height: 70px; width: 250px; }
+body footer { border-top: 1px solid #ececec; margin: 20px 0; padding-top: 10px; text-align: center; }

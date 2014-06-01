@@ -5,7 +5,7 @@ body {
     margin: 0 auto;
     width: 900px;
 
-    #main {
+    main {
         form {
             margin-left: 20px;
 
@@ -17,9 +17,23 @@ body {
                 }
             }
 
+            input[type="text"] {
+                border: 1px solid #666666;
+                outline: none;
+                padding: 5px;
+
+                &:focus {
+                    border: 1px solid #0033FF;
+                }
+            }
+
             h2 {
                 border-bottom: $border-style;
                 padding-bottom: 5px;
+            }
+
+            h3 {
+                margin-top: 0;
             }
 
             section {
@@ -29,14 +43,57 @@ body {
                     display: inline-block;
                     margin: 0 30px;
                     vertical-align: top;
+
+                    &.custom_flag {
+                        .fa-plus-circle {
+                            color: green;
+                        }
+
+                        .fa-minus-circle {
+                            color: red;
+                            margin-right: 20px;
+                        }
+
+                        .abbr {
+                            text-transform: uppercase;
+                            width: 30px;
+                        }
+
+                        .name {
+                            width: 150px;
+                        }
+
+                        .desc {
+                            width: 360px;
+                        }
+                    }
                 }
 
-                p {
-                    display: inline-block;
-                    width: 290px;
+                &.events {
+                    p {
+                        display: inline-block;
+                        width: 290px;
 
-                    label {
-                        margin: 0 5px;
+                        label {
+                            margin: 0 5px;
+                        }
+                    }
+                }
+
+                &.flags {
+                    .help {
+                        color: #888888;
+                        font-size: 14px;
+                        padding-left: 0;
+
+                        li {
+                            list-style-type: none;
+
+                            span {
+                                display: inline-block;
+                                width: 85px;
+                            }
+                        }
                     }
                 }
             }

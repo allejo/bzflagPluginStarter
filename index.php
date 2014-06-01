@@ -295,6 +295,7 @@ sort($events);
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <title>allejo's BZFlag Plugin Starter</title>
         <meta name="description" content="Easily generate the structure for a BZFlag plugin in C++.">
         <meta name="keywords" content="bzflag,plugin,c++,code,skeleton">
@@ -310,7 +311,7 @@ sort($events);
             <h1>BZFlag Plug-in Starter</h1>
         </header>
 
-        <div id="main">
+        <main>
             <form method="post">
                 <h2>Plug-in Details</h2>
                 <span>Plug-in Name</span>
@@ -328,7 +329,7 @@ sort($events);
                 </select>
 
                 <h2>Plug-in Events</h2>
-                <section>
+                <section class="events">
                     <?php
                         foreach ($events as $event)
                         {
@@ -344,6 +345,29 @@ sort($events);
                 <h2>Plug-in Slashcommands</h2>
                 <p>Insert one slash command per line without the '/'.</p>
                 <textarea name="slashcommands"></textarea>
+
+                <h2>Plug-in Custom Flags</h2>
+                <section class="flags">
+                    <ul class="help">
+                        <li><span>Abbr</span> - The flag abbreviation used for the scoreboard and plug-ins</li>
+                        <li><span>Full name</span> - The full name of the flag that will appear in the console and HUD</li>
+                        <li><span>Description</span> - A description of what the flag does, which will appear when a player has flag help messages turned on</li>
+                        <li><span>Flag type</span> - Either good or bad flag</li>
+                    </ul>
+
+                    <article class="custom_flag">
+                        <i class="fa fa-plus-circle"></i>
+                        <i class="fa fa-minus-circle"></i>
+                        <input type="text" class="abbr" maxlength="2" name="FlagAbbr[]" placeholder="Abbr">
+                        <input type="text" class="name" name="FlagFullName[]" placeholder="Full name">
+                        <input type="text" class="desc" name="FlagDescription[]" placeholder="Description">
+                        <select name="FlagType[]">
+                            <option value="eGoodFlag">Good Flag</option>
+                            <option value="eBadFlag">Bad Flag</option>
+                        </select>
+                    </article>
+                </section>
+
 
                 <h2>Plug-in Source Code Settings</h2>
                 <section>
@@ -373,12 +397,33 @@ sort($events);
                     <input type="submit" name="download_button" value="Download" />
                 </div>
             </form>
-        </div>
+        </main>
 
         <footer>
             Copyright &copy; 2013-2014
             <br />
             <small>Vladimir "allejo" Jimenez</small>
         </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            $(function()
+            {
+                $(document).on("click", ".fa-plus-circle", function(e)
+                {
+                    $(".custom_flag:first").clone().appendTo($(this).parent().parent());
+                    e.preventDefault();
+                });
+
+                $(document).on("click", ".fa-minus-circle", function(e)
+                {
+                    if ($(".fa-minus-circle").length > 1)
+                    {
+                        $(this).parent().remove();
+                        e.preventDefault();
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
