@@ -33,7 +33,7 @@ if (isset($_POST['submitted']))
                    );
     $bracesLocation = ($_POST['braces'] == "new") ? "\n" : " ";
     $disableApiDocs = ($_POST['disableApiDocs'] == "true");
-    $disableCodeComments = ($_POST['disableApiComments'] == "true");
+    $disableCodeComments = ($_POST['disableCodeComments'] == "true");
 
     // Get the plugin name, remove all the white space, and use CamelCase so we
     // can use this as the class name when we generate the plugin. We also need
