@@ -32,7 +32,8 @@ if (isset($_POST['submitted']))
                        "type" => $_POST['FlagType']
                    );
     $bracesLocation = ($_POST['braces'] == "new") ? "\n" : " ";
-    $disableComments = ($_POST['disableComments'] == "true");
+    $disableApiDocs = ($_POST['disableApiDocs'] == "true");
+    $disableCodeComments = ($_POST['disableApiComments'] == "true");
 
     // Get the plugin name, remove all the white space, and use CamelCase so we
     // can use this as the class name when we generate the plugin. We also need
@@ -169,9 +170,24 @@ if (isset($_POST['submitted']))
         // We need to get all the data for an event so let's get it and store it
         $eventData = file_get_contents('events/' . $event . '.txt');
 
-        if ($disableComments)
+        // We want to disable the API documentations so we'll ignore them
+        if ($disableApiDocs)
         {
-            // @TODO
+            $explodedEventData = explode("\n", $eventData); // Explode the event data based on new lines
+            $modifiedEventData = ""; // We'll be storing the modified event data without comments
+
+            // Go through each line of the event data
+            foreach ($explodedEventData as $line)
+            {
+                // If it's an empty line or has API documentation, we'll ignore it; otherwise save it
+                if (strpos($line, "\t//") === false && !empty($line))
+                {
+                    $modifiedEventData[] = $line;
+                }
+            }
+
+            // Imploded the modified event data without empty lines or API documentation and have new lines
+            $eventData = implode("\n", $modifiedEventData);
         }
 
         // Check to see if we want to put the open brace on the same line as the if statement
@@ -416,7 +432,8 @@ sort($events);
 
                     <article>
                         <h3>Misc</h3>
-                        <input type="checkbox" name="disableComments" value="true"> Disable comments<br>
+                        <input type="checkbox" id="disableApiDocs" name="disableApiDocs" value="true"> <label for="disableApiDocs">Disable API documentation</label><br>
+                        <input type="checkbox" id="disableCodeComments" name="disableCodeComments" value="true"> <label for="disableCodeComments">Disable code comments</label>
                     </article>
                 </section>
 
