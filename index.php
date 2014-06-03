@@ -433,7 +433,7 @@ sort($events);
                     <article>
                         <h3>Misc</h3>
                         <input type="checkbox" id="disableApiDocs" name="disableApiDocs" value="true"> <label for="disableApiDocs">Disable API documentation</label><br>
-                        <input type="checkbox" id="disableCodeComments" name="disableCodeComments" value="true"> <label for="disableCodeComments">Disable code comments</label>
+                        <input type="checkbox" disabled="true" id="disableCodeComments" name="disableCodeComments" value="true"> <label for="disableCodeComments">Disable code comments</label>
                     </article>
                 </section>
 
