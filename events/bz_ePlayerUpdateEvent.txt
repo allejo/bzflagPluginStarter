@@ -3,11 +3,9 @@
 
 		// Data
 		// ---
-		//   (int)       playerID  - ID of the player that sent the update
-		//   (float[3])  pos       - The player's current position
-		//   (float[3])  velocity  - The player's current velocity
-		//   (float)     azimuth   - The direction the player is facing
-		//   (float)     angvel    - The player's angular velocity
-		//   (int)       phydrv    - The physics driver the player is on
-		//   (double)    eventTime - The current server time
+		//   (int)                   playerID  - ID of the player that sent the update
+		//   (bz_PlayerUpdateState)  state     - The original state the tank was in
+		//   (bz_PlayerUpdateState)  lastState - The second state the tank is currently in to show there was an update
+		//   (double)                stateTime - The time the state was updated
+		//   (double)                eventTime - The current server time
 	}%s
