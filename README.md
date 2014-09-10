@@ -50,4 +50,4 @@ This message may **not** apply to any mirror websites or forks of this project.
 License
 -------
 
-[GNU General Public License v3](https://github.com/allejo/bzflagPluginStarter/blob/master/LICENSE.markdown)
+[GNU General Public License v3](https://github.com/allejo/bzflagPluginStarter/blob/master/LICENSE.md)
