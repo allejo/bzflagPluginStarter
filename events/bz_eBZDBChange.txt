@@ -1,4 +1,4 @@
-	%s %s// This event  is called each time a BZDB variable is changed%s
+	%s %s// This event is called each time a BZDB variable is changed%s
 		bz_BZDBChangeData_V1* bzdbData = (bz_BZDBChangeData_V1*)eventData;
 
 		// Data
