@@ -22,9 +22,9 @@ if (isset($_POST['submitted']))
     // Let's make some easy reference variables
     $pluginName = (strlen($_POST['plugin-name']) > 0) ? $_POST['plugin-name'] : "SAMPLE_PLUGIN";
     $author = (strlen($_POST['author']) > 0) ? $_POST['author'] : "John Doe";
-    $license = $_POST['license'];
+    $license = (isset($_POST['license'])) ? $_POST['license'] : "BSD2";
     $slashCommands = preg_split("/[\r\n]+/", $_POST['slashcommands'], -1, PREG_SPLIT_NO_EMPTY);
-    $events = $_POST['Events'];
+    $events = (isset($_POST['Events'])) ? $_POST['Events'] : null;
     $customFlags = array(
                        "abbr" => $_POST['FlagAbbr'],
                        "name" => $_POST['FlagFullName'],
@@ -32,8 +32,8 @@ if (isset($_POST['submitted']))
                        "type" => $_POST['FlagType']
                    );
     $bracesLocation = ($_POST['braces'] == "new") ? "\n" : " ";
-    $disableApiDocs = ($_POST['disableApiDocs'] == "true");
-    $disableCodeComments = ($_POST['disableCodeComments'] == "true");
+    $disableApiDocs = (isset($_POST['disableApiDocs'])) ? ($_POST['disableApiDocs'] == "true") : false;
+    $disableCodeComments = (isset($_POST['disableCodeComments'])) ? ($_POST['disableCodeComments'] == "true") : false;
 
     // Get the plugin name, remove all the white space, and use CamelCase so we
     // can use this as the class name when we generate the plugin. We also need
@@ -43,7 +43,13 @@ if (isset($_POST['submitted']))
     $literalValues = array('Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine');
 
     $className = preg_replace("/[^A-Za-z0-9_]/", '', $pluginName);
-    $className = str_replace($numericValues, $literalValues, $className);
+
+    // Fix the class name if the first character is a numeric character
+    if (is_numeric(substr($className, 0, 1)))
+    {
+        $className = str_replace($numericValues, $literalValues, substr($className, 0, 1)) . substr($className, 1);
+    }
+
     $className = preg_replace('/\s+/', '', ucwords($className));
 
     // We need to get the current date to generate the copyright notices at the
@@ -59,8 +65,7 @@ if (isset($_POST['submitted']))
 
     // The GPL licenses require a different amount of arguments in the lincense
     // header so we need to accomodate that
-    if ($_POST['license'] == "GPLv2" || $_POST['license'] == "GPLv3" ||
-        $_POST['license'] == "LGPLv2")
+    if ($license == "GPLv2" || $license == "GPLv3" || $license == "LGPLv2")
     {
         $generatedPlugin .= sprintf($licenseTemplate, $pluginName, $currentYear, $author);
     }
@@ -118,6 +123,7 @@ if (isset($_POST['submitted']))
         }
     }
 
+    $registeredFlags = "";
     if (count($customFlags['abbr']) > 0 && !empty($customFlags['abbr'][0]))
     {
         $registeredFlags = (count($events) > 0 || count($slashCommands) > 0) ? "\n\n" : "";
@@ -163,70 +169,73 @@ if (isset($_POST['submitted']))
         $switchEventCode .= ($_POST['braces'] == "new") ? "\n\t{\n" : " {\n";
     }
 
-    // Get the data comments for each of the events and add them to the if/switch statement
-    // Format them respectively according to choice of the user
-    foreach ($events as $event)
+    if ($events != null)
     {
-        // We need to get all the data for an event so let's get it and store it
-        $eventData = file_get_contents('events/' . $event . '.txt');
-
-        // We want to disable the API documentations so we'll ignore them
-        if ($disableApiDocs)
+        // Get the data comments for each of the events and add them to the if/switch statement
+        // Format them respectively according to choice of the user
+        foreach ($events as $event)
         {
-            $explodedEventData = explode("\n", $eventData); // Explode the event data based on new lines
-            $modifiedEventData = ""; // We'll be storing the modified event data without comments
+            // We need to get all the data for an event so let's get it and store it
+            $eventData = file_get_contents('events/' . $event . '.txt');
 
-            // Go through each line of the event data
-            foreach ($explodedEventData as $line)
+            // We want to disable the API documentations so we'll ignore them
+            if ($disableApiDocs)
             {
-                // If it's an empty line or has API documentation, we'll ignore it; otherwise save it
-                if (strpos($line, "\t//") === false && !empty($line))
+                $explodedEventData = explode("\n", $eventData); // Explode the event data based on new lines
+                $modifiedEventData = ""; // We'll be storing the modified event data without comments
+
+                // Go through each line of the event data
+                foreach ($explodedEventData as $line)
                 {
-                    $modifiedEventData[] = $line;
+                    // If it's an empty line or has API documentation, we'll ignore it; otherwise save it
+                    if (strpos($line, "\t//") === false && !empty($line))
+                    {
+                        $modifiedEventData[] = $line;
+                    }
                 }
+
+                // Imploded the modified event data without empty lines or API documentation and have new lines
+                $eventData = implode("\n", $modifiedEventData);
             }
 
-            // Imploded the modified event data without empty lines or API documentation and have new lines
-            $eventData = implode("\n", $modifiedEventData);
-        }
+            // Check to see if we want to put the open brace on the same line as the if statement
+            $braces = ($_POST['braces'] == "same") ? "{ " : "";
 
-        // Check to see if we want to put the open brace on the same line as the if statement
-        $braces = ($_POST['braces'] == "same") ? "{ " : "";
+            // If we want the open brace on the new line, then let's add it to a new line
+            $endOfLine = ($_POST['braces'] == "same") ? "" : "\n\t{";
 
-        // If we want the open brace on the new line, then let's add it to a new line
-        $endOfLine = ($_POST['braces'] == "same") ? "" : "\n\t{";
-
-        if ($_POST['eventhandling'] == "if")
-        {
-            // This will be our default if statement template, if we are not on our first condition,
-            // then we will look prepend an "else" to form an "else if" condition
-            $defaultIfStatemet = "if (eventData->eventType == " . $event . ")";
-
-            // Check whether or not to form an "else if" condition
-            if ($firstIfStatement)
+            if ($_POST['eventhandling'] == "if")
             {
-                $firstIfStatement = false;
+                // This will be our default if statement template, if we are not on our first condition,
+                // then we will look prepend an "else" to form an "else if" condition
+                $defaultIfStatemet = "if (eventData->eventType == " . $event . ")";
+
+                // Check whether or not to form an "else if" condition
+                if ($firstIfStatement)
+                {
+                    $firstIfStatement = false;
+                }
+                else
+                {
+                    $defaultIfStatemet = "\n\telse " . $defaultIfStatemet;
+                }
+
+                // Add the generated code
+                $switchEventCode .= sprintf($eventData, $defaultIfStatemet, $braces, $endOfLine, "");
             }
-            else
+            else if ($_POST['eventhandling'] == "switch")
             {
-                $defaultIfStatemet = "\n\telse " . $defaultIfStatemet;
+                // Get the event data and format the case block as requested
+                $formattedCode = sprintf($eventData, "case " . $event . ":", $braces, $endOfLine, "\n\tbreak;\n\n");
+
+                // Because of lack of indentation, we need to the case block one more time so replace
+                // a single tab with two tabs
+                $formattedCode = str_replace("\t", "\t\t", $formattedCode);
+
+                // Because we replaced all the single tabs with two tabs, we over indented the case
+                // block content, so we need to unindent once so replace 4 tabs with 3
+                $switchEventCode .= str_replace("\t\t\t\t", "\t\t\t", $formattedCode);
             }
-
-            // Add the generated code
-            $switchEventCode .= sprintf($eventData, $defaultIfStatemet, $braces, $endOfLine, "");
-        }
-        else if ($_POST['eventhandling'] == "switch")
-        {
-            // Get the event data and format the case block as requested
-            $formattedCode = sprintf($eventData, "case " . $event . ":", $braces, $endOfLine, "\n\tbreak;\n\n");
-
-            // Because of lack of indentation, we need to the case block one more time so replace
-            // a single tab with two tabs
-            $formattedCode = str_replace("\t", "\t\t", $formattedCode);
-
-            // Because we replaced all the single tabs with two tabs, we over indented the case
-            // block content, so we need to unindent once so replace 4 tabs with 3
-            $switchEventCode .= str_replace("\t\t\t\t", "\t\t\t", $formattedCode);
         }
     }
 
