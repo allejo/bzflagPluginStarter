@@ -1,0 +1,1425 @@
+[
+  {
+    "eventName": "bz_eAllowCTFCaptureEvent",
+    "desc": "This event is called each time a flag is about to be captured",
+    "dataType": "bz_AllowCTFCaptureEventData_V1",
+    "varName": "allowCtfData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerCapping",
+        "desc": "The ID of the player making the capture"
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "teamCapped",
+        "desc": "The team making the capture"
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "teamCapping",
+        "desc": "The team whose flag is being captured"
+      },
+      {
+        "dataType": "float[3]",
+        "name": "pos",
+        "desc": "The position of the player"
+      },
+      {
+        "dataType": "float",
+        "name": "rot",
+        "desc": "The direction the player is"
+      },
+      {
+        "dataType": "bool",
+        "name": "allow",
+        "desc": "Whether or not to allow the capture"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time at which the event occurred (in seconds)."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eAllowFlagGrab",
+    "desc": "This event is called each time a player attempts to grab a flag",
+    "dataType": "bz_AllowFlagGrabData_V1",
+    "varName": "allowFlagGrabData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The ID of the player who is grabbing the flag"
+      },
+      {
+        "dataType": "int",
+        "name": "flagID",
+        "desc": "The ID of the flag that is going to be grabbed"
+      },
+      {
+        "dataType": "const char*",
+        "name": "flagType",
+        "desc": "The type of the flag about to be grabbed"
+      },
+      {
+        "dataType": "bool",
+        "name": "allow",
+        "desc": "Whether or not to allow the flag grab"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time at which the event occurred (in seconds)."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eAllowPlayer",
+    "desc": "This event is called each time a player connects to the server",
+    "dataType": "bz_AllowPlayerEventData_V1",
+    "varName": "allowPlayerData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "This value is the player ID for the joining player."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "callsign",
+        "desc": "This value is the callsign for the player."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "ipAddress",
+        "desc": "This value is the IPv4 address of the player."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "reason",
+        "desc": "This value is the reason for any denials of admittance, it will be reported back to the player."
+      },
+      {
+        "dataType": "bool",
+        "name": "allow",
+        "desc": "This value is the current allow/deny state for the join. Plug-ins wishing to overide the server"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eAllowSpawn",
+    "desc": "This event is called before a player respawns",
+    "dataType": "bz_AllowSpawnData_V1",
+    "varName": "allowSpawnData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "This value is the player ID for the joining player."
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team the player belongs to."
+      },
+      {
+        "dataType": "bool",
+        "name": "handled",
+        "desc": "Whether or not the plugin will be handling the respawn or not."
+      },
+      {
+        "dataType": "bool",
+        "name": "allow",
+        "desc": "Set to false if the player should not be allowed to spawn."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds.)"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eBanEvent",
+    "desc": "This event is called each time a regular ban is executed",
+    "dataType": "bz_BanEventData_V1",
+    "varName": "banData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "bannerID",
+        "desc": "This value is the player ID for the banner."
+      },
+      {
+        "dataType": "int",
+        "name": "banneeID",
+        "desc": "This value is the player ID for the bannee."
+      },
+      {
+        "dataType": "int",
+        "name": "duration",
+        "desc": "This value is the duration of the ban in minutes."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "reason",
+        "desc": "This value contains the reason why and by who a player got banned."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "ipAddress",
+        "desc": "This value contains the ipaddress of the bannee."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eBZDBChange",
+    "desc": "This event is called each time a BZDB variable is changed",
+    "dataType": "bz_BZDBChangeData_V1",
+    "varName": "bzdbData",
+    "params": [
+      {
+        "dataType": "bz_ApiString",
+        "name": "key",
+        "desc": "The variable that was changed"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "value",
+        "desc": "What the variable was changed too"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eCaptureEvent",
+    "desc": "This event is called each time a team's flag has been captured",
+    "dataType": "bz_CTFCaptureEventData_V1",
+    "varName": "captureData",
+    "params": [
+      {
+        "dataType": "bz_eTeamType",
+        "name": "teamCapped",
+        "desc": "The team whose flag was captured."
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "teamCapping",
+        "desc": "The team who did the capturing."
+      },
+      {
+        "dataType": "int",
+        "name": "playerCapping",
+        "desc": "The player who captured the flag."
+      },
+      {
+        "dataType": "float[3]",
+        "name": "pos",
+        "desc": "The world position(X,Y,Z) where the flag has been captured"
+      },
+      {
+        "dataType": "float",
+        "name": "rot",
+        "desc": "The rotational orientation of the capturing player"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eFilteredChatMessageEvent",
+    "desc": "This event is called for each chat message the server receives; after the server or any plug-ins have done filtering",
+    "dataType": "bz_ChatEventData_V1",
+    "varName": "chatData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "from",
+        "desc": "The player ID sending the message."
+      },
+      {
+        "dataType": "int",
+        "name": "to",
+        "desc": "The player ID that the message is to if the message is to an individual, or a"
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team the message is for if it not for an individual or a broadcast. If it"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "message",
+        "desc": "The filtered final text of the message."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eFlagDroppedEvent",
+    "desc": "This event is called each time a flag is dropped by a player.",
+    "dataType": "bz_FlagDroppedEventData_V1",
+    "varName": "flagDropData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The player that dropped the flag"
+      },
+      {
+        "dataType": "int",
+        "name": "flagID",
+        "desc": "The flag ID that was dropped"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "flagType",
+        "desc": "The flag abbreviation of the flag that was grabbed"
+      },
+      {
+        "dataType": "float[3]",
+        "name": "pos",
+        "desc": "The position at which the flag was dropped"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eFlagGrabbedEvent",
+    "desc": "This event is called each time a flag is grabbed by a player",
+    "dataType": "bz_FlagGrabbedEventData_V1",
+    "varName": "flagGrabData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The player that grabbed the flag"
+      },
+      {
+        "dataType": "int",
+        "name": "flagID",
+        "desc": "The flag ID that was grabbed"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "flagType",
+        "desc": "The flag abbreviation of the flag that was grabbed"
+      },
+      {
+        "dataType": "float[3]",
+        "name": "pos",
+        "desc": "The position at which the flag was grabbed"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eFlagTransferredEvent",
+    "desc": "This event is called each time a player with Thief steals a flag",
+    "dataType": "bz_FlagTransferredEventData_V1",
+    "varName": "flagTransferredData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "fromPlayerID",
+        "desc": "The ID of the player that stole the flag"
+      },
+      {
+        "dataType": "int",
+        "name": "toPlayerID",
+        "desc": "The ID of the player whose flag was stolen"
+      },
+      {
+        "dataType": "const char*",
+        "name": "flagType",
+        "desc": "The flag code of the stolen flag"
+      },
+      {
+        "dataType": "enum",
+        "name": "action",
+        "desc": "Action The action taken for the transfer. Values: ContinueSteal, CancelSteal, DropThief"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGameEndEvent",
+    "desc": "This event is called each time a game ends",
+    "dataType": "bz_GameStartEndEventData_V1",
+    "varName": "gameEndData",
+    "params": [
+      {
+        "dataType": "double",
+        "name": "duration",
+        "desc": "The duration (in seconds) of the game."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds)."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGamePauseEvent",
+    "desc": "This event is triggered when a timed game is paused",
+    "dataType": "bz_GamePauseResumeEventData_V1",
+    "varName": "gamePauseData",
+    "params": [
+      {
+        "dataType": "bz_ApiString",
+        "name": "actionBy",
+        "desc": "The callsign of whoever triggered the event. By default, it's \"SERVER\""
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds)."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGameResumeEvent",
+    "desc": "This event is triggered when a timed game resumes",
+    "dataType": "bz_GamePauseResumeEventData_V1",
+    "varName": "gameResumeData",
+    "params": [
+      {
+        "dataType": "bz_ApiString",
+        "name": "actionBy",
+        "desc": "The callsign of whoever triggered the event. By default, it's \"SERVER\""
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds)."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGameStartEvent",
+    "desc": "This event is triggered when a timed game begins",
+    "dataType": "bz_GameStartEndEventData_V1",
+    "varName": "gameStartData",
+    "params": [
+      {
+        "dataType": "double",
+        "name": "duration",
+        "desc": "The duration (in seconds) of the game."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds)."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGetAutoTeamEvent",
+    "desc": "This event is called for each new player is added to a team",
+    "dataType": "bz_GetAutoTeamEventData_V1",
+    "varName": "autoTeamData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "ID of the player that is being added to the game."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "callsign",
+        "desc": "Callsign of the player that is being added to the game."
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team that the player will be added to. Initialized to the team chosen by the"
+      },
+      {
+        "dataType": "bool",
+        "name": "handled",
+        "desc": "The current state representing if other plug-ins have modified the default team."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGetPlayerInfoEvent",
+    "desc": "This event is called each time the server sends out a player info update message to a remote player",
+    "dataType": "bz_GetPlayerInfoEventData_V1",
+    "varName": "playerInfoData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The playerID the record refers too."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "callsign",
+        "desc": "The callsign for the player."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "ipAddress",
+        "desc": "The IPv4 address for the player. (not set in 2.4.0, fixed in 2.4.1.)"
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team the player is current only."
+      },
+      {
+        "dataType": "bool",
+        "name": "admin",
+        "desc": "The admin permision state of the player, indicating if they will be displayed with an '@' symbol in the scoreboard."
+      },
+      {
+        "dataType": "bool",
+        "name": "verified",
+        "desc": "The authentication state of the player, indicating if they will be displayed with an '+' symbol in the scoreboard."
+      },
+      {
+        "dataType": "bool",
+        "name": "registered",
+        "desc": "The state of the player's username. This value is true if the username is registered."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGetPlayerMotto",
+    "desc": "This event is called when the player joins. It gives us the motto of the player",
+    "dataType": "bz_GetPlayerMottoData_V2",
+    "varName": "mottoData",
+    "params": [
+      {
+        "dataType": "bz_ApiString",
+        "name": "motto",
+        "desc": "The motto of the joining player. This value may ve overwritten to change the motto of a player."
+      },
+      {
+        "dataType": "bz_BasePlayerRecord",
+        "name": "record",
+        "desc": "The player record for the player using the motto."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds)."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGetPlayerSpawnPosEvent",
+    "desc": "This event is called each time the server needs a new spawn postion",
+    "dataType": "bz_GetPlayerSpawnPosEventData_V1",
+    "varName": "spawnData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "ID of the player that is requesting the spawn position."
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team the player is currently in."
+      },
+      {
+        "dataType": "bool",
+        "name": "handled",
+        "desc": "The current state representing if other plug-ins have modified the spawn position."
+      },
+      {
+        "dataType": "float[3]",
+        "name": "pos",
+        "desc": "Position where the player will be spawned. This value is initialized to the server"
+      },
+      {
+        "dataType": "float",
+        "name": "rot",
+        "desc": "The rotational direction that the player will be spawned at. This value is initialized"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eGetWorldEvent",
+    "desc": "This event is called before the BZFS server defines the world",
+    "dataType": "bz_GetWorldEventData_V1",
+    "varName": "worldData",
+    "params": [
+      {
+        "dataType": "bool",
+        "name": "generated",
+        "desc": "The value representing the state of the world generation. If another"
+      },
+      {
+        "dataType": "bool",
+        "name": "ctf",
+        "desc": "This value represents the game state being a Capture the Flag (CTF) type"
+      },
+      {
+        "dataType": "bool",
+        "name": "rabbit",
+        "desc": "This value represents the game state being a Rabbit Hunt type game."
+      },
+      {
+        "dataType": "bool",
+        "name": "openFFA",
+        "desc": "This value represents the game state being a Free For All type game."
+      },
+      {
+        "dataType": "char*",
+        "name": "worldBlob",
+        "desc": "A pointer to a memory location from which to read the world stream."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "worldFile",
+        "desc": "The path to the map file that will be used when this event is completed."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Local Server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eHostBanModifyEvent",
+    "desc": "This event is called each time before a hostban is going to happen",
+    "dataType": "bz_HostBanEventData_V1",
+    "varName": "hostBanData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "bannerID",
+        "desc": "This value is the player ID for the banner."
+      },
+      {
+        "dataType": "int",
+        "name": "duration",
+        "desc": "This value is the duration of the ban in minutes."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "reason",
+        "desc": "This value contains the reason why and by who a player got banned."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "hostPattern",
+        "desc": "This value contains the host pattern that is banned."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eKickEvent",
+    "desc": "This event is triggered when a player is kicked from the server",
+    "dataType": "bz_KickEventData_V1",
+    "varName": "kickData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "kickerID",
+        "desc": "The ID of the player who performed the kick."
+      },
+      {
+        "dataType": "int",
+        "name": "kickedID",
+        "desc": "The ID of the player being kicked from the server."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "reason",
+        "desc": "The reason (sent to kicked player)."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds.)"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eKillEvent",
+    "desc": "This event is triggered when a player sends the /kill Slash Command to kill another player",
+    "dataType": "bz_KillEventData_V1",
+    "varName": "killData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "killerID",
+        "desc": "The ID of the player who sent the /kill command"
+      },
+      {
+        "dataType": "int",
+        "name": "killedID",
+        "desc": "The ID of the player who was killed"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "reason",
+        "desc": "The reason (sent to killed player)."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eListServerUpdateEvent",
+    "desc": "This event is called before the server adds itself to the list server",
+    "dataType": "bz_ListServerUpdateEvent_V1",
+    "varName": "listServerData",
+    "params": [
+      {
+        "dataType": "bz_ApiString",
+        "name": "address",
+        "desc": "The public address of the server, as specified with the -publicaddr command-line option."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "description",
+        "desc": "The public description of the server, as specified with the -publictitle command-line option."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "groups",
+        "desc": "The groups the server will be advertised to, as specified with the -advertise command-line option."
+      },
+      {
+        "dataType": "bool",
+        "name": "handled",
+        "desc": "Whether or not the plug-in will override the values"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds.)"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eLoggingEvent",
+    "desc": "This event is called whenever a debug message is outputted",
+    "dataType": "bz_LoggingEventData_V1",
+    "varName": "logData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "level",
+        "desc": "The debug level that this debug message is being triggered at. -d corresponds to level 1, -dd to level 2, etc."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "message",
+        "desc": "The debug message that is being outputted."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The server time the event occurred (in seconds.)"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eMessageFilteredEvent",
+    "desc": "This event is called whenever a message is censored by the swear filter",
+    "dataType": "bz_MessageFilteredEventData_V1",
+    "varName": "msgFilteredData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "player",
+        "desc": "The player who sent the filtered message"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "rawMessage",
+        "desc": "The unfiltered text of the message"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "filteredMessage",
+        "desc": "The text of the message after passing through the filter"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The local server time at which the message was sent"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eMsgDebugEvent",
+    "desc": "This event is called every time packets are sent to the server",
+    "dataType": "bz_MsgDebugEventData_V1",
+    "varName": "msgData",
+    "params": [
+      {
+        "dataType": "char[2]",
+        "name": "code",
+        "desc": "A 2-byte message code to identify what the data is."
+      },
+      {
+        "dataType": "size_t",
+        "name": "len",
+        "desc": "The size of the incoming message."
+      },
+      {
+        "dataType": "char*",
+        "name": "msg",
+        "desc": "The actual message telling the server what the data contains, based on the code data."
+      },
+      {
+        "dataType": "bool",
+        "name": "receive",
+        "desc": "Whether or not to receive the packets"
+      },
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The player that sent the data."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The current server time"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eNetDataReceiveEvent",
+    "desc": "This event is called each time net data is received",
+    "dataType": "bz_NetTransferEventData_V1",
+    "varName": "netTransferData",
+    "params": [
+      {
+        "dataType": "bool",
+        "name": "send",
+        "desc": "Whether data is sent or recieved"
+      },
+      {
+        "dataType": "bool",
+        "name": "udp",
+        "desc": "Whether the packet is UDP"
+      },
+      {
+        "dataType": "unsigned int",
+        "name": "iSize",
+        "desc": "Size of the packet"
+      },
+      {
+        "dataType": "unsigned char*",
+        "name": "data",
+        "desc": "The packet data"
+      },
+      {
+        "dataType": "double",
+        "name": "eventData",
+        "desc": "The current server time"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eNetDataSendEvent",
+    "desc": "This event is called each time net data is sent",
+    "dataType": "bz_eNetDataSendEvent_V1",
+    "varName": "netSentData",
+    "params": [
+      {
+        "dataType": "bool",
+        "name": "send",
+        "desc": "Whether data is sent or recieved"
+      },
+      {
+        "dataType": "bool",
+        "name": "udp",
+        "desc": "Whether the packet is UDP"
+      },
+      {
+        "dataType": "unsigned int",
+        "name": "iSize",
+        "desc": "Size of the packet"
+      },
+      {
+        "dataType": "unsigned char*",
+        "name": "data",
+        "desc": "The packet data"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The current server time"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eNewNonPlayerConnection",
+    "desc": "This event is called each time there is a connection to the server not from a player",
+    "dataType": "bz_NewNonPlayerConnectionEventData_V1",
+    "varName": "nonPlayerData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "connectionID",
+        "desc": "The ID of the connection"
+      },
+      {
+        "dataType": "void*",
+        "name": "data",
+        "desc": "The packet data"
+      },
+      {
+        "dataType": "unsigned int",
+        "name": "size",
+        "desc": "The size of the packet"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_ePlayerAuthEvent",
+    "desc": "This event is triggered when a player's authorization status changes",
+    "dataType": "bz_PlayerAuthEvent_V1",
+    "varName": "authData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The ID of the player who's authorization changed"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_ePlayerDieEvent",
+    "desc": "This event is called each time a tank is killed.",
+    "dataType": "bz_PlayerDieEventData_V1",
+    "varName": "dieData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "ID of the player who was killed."
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team the killed player was on."
+      },
+      {
+        "dataType": "int",
+        "name": "killerID",
+        "desc": "The owner of the shot that killed the player, or BZ_SERVER for server side kills"
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "killerTeam",
+        "desc": "The team the owner of the shot was on."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "flagKilledWith",
+        "desc": "The flag name the owner of the shot had when the shot was fired."
+      },
+      {
+        "dataType": "int",
+        "name": "shotID",
+        "desc": "The shot ID that killed the player, if the player was not killed by a shot, the id will be -1."
+      },
+      {
+        "dataType": "bz_PlayerUpdateState",
+        "name": "state",
+        "desc": "The state record for the killed player at the time of the event"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time of the event on the server."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_ePlayerJoinEvent",
+    "desc": "This event is called each time a player joins the game",
+    "dataType": "bz_PlayerJoinPartEventData_V1",
+    "varName": "joinData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The player ID that is joining"
+      },
+      {
+        "dataType": "bz_BasePlayerRecord*",
+        "name": "record",
+        "desc": "The player record for the joining player"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time of event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_ePlayerPartEvent",
+    "desc": "This event is called each time a player leaves a game",
+    "dataType": "bz_PlayerJoinPartEventData_V1",
+    "varName": "partData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The player ID that is leaving"
+      },
+      {
+        "dataType": "bz_BasePlayerRecord*",
+        "name": "record",
+        "desc": "The player record for the leaving player"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "reason",
+        "desc": "The reason for leaving, such as a kick or a ban"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time of event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_ePlayerPausedEvent",
+    "desc": "This event is called each time a playing tank is paused",
+    "dataType": "bz_PlayerPausedEventData_V1",
+    "varName": "pauseData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "ID of the player who paused."
+      },
+      {
+        "dataType": "bool",
+        "name": "pause",
+        "desc": "Whether the player is pausing (true) or unpausing (false)"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time local server time for the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_ePlayerScoreChanged",
+    "desc": "This event is called when a player's score changes",
+    "dataType": "bz_PlayerScoreChangeEventData_V1",
+    "varName": "scoreData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "Player that has had a change of score."
+      },
+      {
+        "dataType": "bz_eScoreElement",
+        "name": "element",
+        "desc": "The type of score that is being changed."
+      },
+      {
+        "dataType": "int",
+        "name": "thisValue",
+        "desc": "The new amount of element score the playerID has."
+      },
+      {
+        "dataType": "int",
+        "name": "lastValue",
+        "desc": "The old amount of element score the playerID had."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time local server time for the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_ePlayerSpawnEvent",
+    "desc": "This event is called each time a playing tank is being spawned into the world",
+    "dataType": "bz_PlayerSpawnEventData_V1",
+    "varName": "spawnData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "ID of the player who was added to the world."
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team the player is a member of."
+      },
+      {
+        "dataType": "bz_PlayerUpdateState",
+        "name": "state",
+        "desc": "The state record for the spawning player"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time local server time for the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_ePlayerUpdateEvent",
+    "desc": "This event is called each time a player sends an update to the server",
+    "dataType": "bz_PlayerUpdateEventData_V1",
+    "varName": "updateData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "ID of the player that sent the update"
+      },
+      {
+        "dataType": "bz_PlayerUpdateState",
+        "name": "state",
+        "desc": "The original state the tank was in"
+      },
+      {
+        "dataType": "bz_PlayerUpdateState",
+        "name": "lastState",
+        "desc": "The second state the tank is currently in to show there was an update"
+      },
+      {
+        "dataType": "double",
+        "name": "stateTime",
+        "desc": "The time the state was updated"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The current server time"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eRawChatMessageEvent",
+    "desc": "This event is called for each chat message the server receives. It is called before any filtering is done.",
+    "dataType": "bz_ChatEventData_V1",
+    "varName": "chatData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "from",
+        "desc": "The player ID sending the message."
+      },
+      {
+        "dataType": "int",
+        "name": "to",
+        "desc": "The player ID that the message is to if the message is to an individual, or a"
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team the message is for if it not for an individual or a broadcast. If it"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "message",
+        "desc": "The filtered final text of the message."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eReportFiledEvent",
+    "desc": "This event is called each time a player or plugin files a report",
+    "dataType": "bz_ReportFiledEventData_V1",
+    "varName": "reportData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The player ID that is filing the report."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "message",
+        "desc": "The report message that is filed."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time of event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eServerMsgEvent",
+    "desc": "This event is called each time the server sends a message",
+    "dataType": "bz_eServerMsgEvent_V1",
+    "varName": "serverMsgData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "to",
+        "desc": "ID of the player receiving the message"
+      },
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team/group receiving the message"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "message",
+        "desc": "The message text"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time local server time for the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eShotEndedEvent",
+    "desc": "This event is called each time a shot ends",
+    "dataType": "bz_ShotEndedEventData_V1",
+    "varName": "shotEndData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "The player ending the shot"
+      },
+      {
+        "dataType": "int",
+        "name": "shotID",
+        "desc": "The shot ID"
+      },
+      {
+        "dataType": "bool",
+        "name": "explode",
+        "desc": "Whether the shot exploded or not"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eShotFiredEvent",
+    "desc": "This event is called each time a shot is fired",
+    "dataType": "bz_ShotFiredEventData_V1",
+    "varName": "shotFiredData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "playerID",
+        "desc": "ID of the player that fired the shot"
+      },
+      {
+        "dataType": "bool",
+        "name": "changed",
+        "desc": "Whether or not the shot has been modified. Shot type will not change unless this is set to 1 (true)."
+      },
+      {
+        "dataType": "float[3]",
+        "name": "pos",
+        "desc": "Where the shot was fired"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "type",
+        "desc": "The shot type. This is the abbreviation, such as \"PZ\" or \"SW\""
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "This value is the local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eSlashCommandEvent",
+    "desc": "This event is called each time a player sends a slash command",
+    "dataType": "bz_SlashCommandEventData_V1",
+    "varName": "slashCommandData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "from",
+        "desc": "The player who sent the slash command"
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "message",
+        "desc": "The full text of the chat message for the slash command, containing the command and all associated parameters"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The local server time of the event"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eTeamScoreChanged",
+    "desc": "This event is called when a team's score changes",
+    "dataType": "bz_TeamScoreChangeEventData_V1",
+    "varName": "teamScoreData",
+    "params": [
+      {
+        "dataType": "bz_eTeamType",
+        "name": "team",
+        "desc": "The team that had a change of score."
+      },
+      {
+        "dataType": "bz_eScoreElement",
+        "name": "element",
+        "desc": "The type of score that is being changed."
+      },
+      {
+        "dataType": "int",
+        "name": "thisValue",
+        "desc": "The new amount of element score the team has."
+      },
+      {
+        "dataType": "int",
+        "name": "lastValue",
+        "desc": "The old amount of element score the team had."
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Time local server time for the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eTickEvent",
+    "desc": "This event is called once for each BZFS main loop",
+    "dataType": "bz_TickEventData_V1",
+    "varName": "tickData",
+    "params": [
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "Local Server time of the event (in seconds)"
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eUnknownSlashCommand",
+    "desc": "This event is called when the BZFS server does not have an installed handler for a specific slash command",
+    "dataType": "bz_UnknownSlashCommandEventData_V1",
+    "varName": "unknownSlashCommandData",
+    "params": [
+      {
+        "dataType": "int",
+        "name": "from",
+        "desc": "The player who sent the slash command"
+      },
+      {
+        "dataType": "bool",
+        "name": "handled",
+        "desc": "The current state representing if the command has been handled by a previous plug-in."
+      },
+      {
+        "dataType": "bz_ApiString",
+        "name": "message",
+        "desc": "The full text of the chat message for the slash command, containing the command and all"
+      },
+      {
+        "dataType": "double",
+        "name": "eventTime",
+        "desc": "The local server time of the event."
+      }
+    ]
+  },
+  {
+    "eventName": "bz_eWorldFinalized",
+    "desc": "This event is called when the world is done loading",
+    "dataType": "",
+    "varName": "",
+    "params": []
+  }
+]
