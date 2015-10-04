@@ -1,5 +1,5 @@
 	%s %s// This event is called each time the server sends a message%s
-		bz_eServerMsgEvent_V1* serverMsgData = (bz_eServerMsgEvent_V1*)eventData;
+		bz_ServerMsgEventData_V1* serverMsgData = (bz_ServerMsgEventData_V1*)eventData;
 
 		// Data
 		// ---
