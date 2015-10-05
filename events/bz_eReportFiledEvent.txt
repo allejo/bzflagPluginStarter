@@ -3,7 +3,7 @@
 
 		// Data
 		// ---
-		//    (int)           playerID  - The player ID that is filing the report.
+		//    (bz_ApiString)  from      - The player that is filing the report.
 		//    (bz_ApiString)  message   - The report message that is filed.
 		//    (double)        eventTime - Time of event.
 	}%s
