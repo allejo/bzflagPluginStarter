@@ -10,7 +10,7 @@
 		//                                plug-ins that have not processed yet.
 		//    (float[3])      pos       - Position where the player will be spawned. This value is initialized to the server
 		//                                computed spawn position using the current spawn rules.
-		//    (float)         rot       - The rotational direction that the player will be spawned at. This value is initialized
-		//                                to the server computed spawn rotation using the current spawn rules.
+		//    (float)         rot       - The rotational direction (in radians) that the player will be spawned at. This value
+		//                                is initialized to the server computed spawn rotation using the current spawn rules.
 		//    (double)        eventTime - The local server time of the event.
 	}%s
