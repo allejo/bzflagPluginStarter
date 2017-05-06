@@ -1,3 +1,5 @@
+> **Heads Up!** This project has moved to [version 2 available here](https://github.com/allejo/bzflagPluginStarter2).
+
 BZFlag Plugin Starter
 =====================
 
